@@ -2,7 +2,7 @@ class CreateShifts < ActiveRecord::Migration
   def change
     create_table :shifts do |t|
       t.int :time
-      t.string :manager
+      t.int :manager
 
       t.timestamps
     end

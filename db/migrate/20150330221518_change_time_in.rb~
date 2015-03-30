@@ -1,0 +1,4 @@
+class ChangeTimeIn < ActiveRecord::Migration
+  def change
+  end
+end
