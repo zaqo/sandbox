@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331075814) do
+ActiveRecord::Schema.define(version: 20150402122321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,5 +51,39 @@ ActiveRecord::Schema.define(version: 20150331075814) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "techparams", force: true do |t|
+    t.integer  "ttime"
+    t.integer  "waterpc"
+    t.integer  "waterl"
+    t.integer  "flour"
+    t.integer  "tempz"
+    t.integer  "temph1"
+    t.integer  "temph2"
+    t.integer  "tempcyl1"
+    t.integer  "tempcyl2"
+    t.integer  "rotate1"
+    t.integer  "rotate2"
+    t.integer  "press1"
+    t.integer  "press2"
+    t.integer  "temp90"
+    t.integer  "temp51"
+    t.integer  "hum51"
+    t.integer  "temp56_1"
+    t.integer  "hum56_1"
+    t.integer  "temp56_2"
+    t.integer  "hum56_2"
+    t.integer  "temp56_3"
+    t.integer  "hum56_3"
+    t.integer  "temp56_4"
+    t.integer  "hum56_4"
+    t.integer  "temp56_5"
+    t.integer  "hum56_5"
+    t.integer  "shift_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "techparams", ["shift_id"], name: "index_techparams_on_shift_id", using: :btree
 
 end

@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ttime: 1
+  waterpc: 1
+  waterl: 1
+  flour: 1
+  tempz: 1
+  temph1: 1
+  temph2: 1
+  tempcyl1: 1
+  tempcyl2: 1
+  rotate1: 1
+  rotate2: 1
+  press1: 1
+  press2: 1
+  temp90: 1
+  temp51: 1
+  hum51: 1
+  temp56_1: 1
+  hum56_1: 
+  hum56_2: 1
+  temp56_3: 1
+  hum56_3: 1
+  temp56_4: 1
+  hum56_4: 1
+  temp56_5: 1
+  hum56_5: 1
+
+two:
+  ttime: 1
+  waterpc: 1
+  waterl: 1
+  flour: 1
+  tempz: 1
+  temph1: 1
+  temph2: 1
+  tempcyl1: 1
+  tempcyl2: 1
+  rotate1: 1
+  rotate2: 1
+  press1: 1
+  press2: 1
+  temp90: 1
+  temp51: 1
+  hum51: 1
+  temp56_1: 1
+  hum56_1: 
+  hum56_2: 1
+  temp56_3: 1
+  hum56_3: 1
+  temp56_4: 1
+  hum56_4: 1
+  temp56_5: 1
+  hum56_5: 1
