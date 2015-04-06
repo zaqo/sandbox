@@ -15,9 +15,11 @@ Rails.application.routes.draw do
      resources :shifts do
 	     	resources :shotdowns
 		resources :techparams
+		resources :humparams
      end
      resources :people
      resources :shotdowntypes
+     resources :products 
 
   # Example resource route with options:
   #   resources :products do
