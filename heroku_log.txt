@@ -1,0 +1,101 @@
+2015-04-06T05:08:22.689099+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/tagged_logging.rb:68:in `tagged'
+2015-04-06T05:08:22.689100+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/rack/logger.rb:20:in `call'
+2015-04-06T05:08:22.689103+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+2015-04-06T05:08:22.689106+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+2015-04-06T05:08:22.689117+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/engine.rb:514:in `call'
+2015-04-06T05:08:22.689119+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/application.rb:144:in `call'
+2015-04-06T05:08:22.689094+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/rack/logger.rb:20:in `block in call'
+2015-04-06T05:08:22.689101+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+2015-04-06T05:08:22.689104+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/runtime.rb:17:in `call'
+2015-04-06T05:08:22.689120+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/configuration.rb:82:in `call'
+2015-04-06T05:08:22.689123+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/server.rb:375:in `process_client'
+2015-04-06T05:08:22.689126+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/thread_pool.rb:104:in `call'
+2015-04-06T05:08:22.689128+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/thread_pool.rb:104:in `block in spawn_thread'
+2015-04-06T05:08:22.689107+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/static.rb:84:in `call'
+2015-04-06T05:08:22.689116+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/sendfile.rb:112:in `call'
+2015-04-06T05:08:22.689097+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/tagged_logging.rb:26:in `tagged'
+2015-04-06T05:08:22.689122+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/server.rb:507:in `handle_request'
+2015-04-06T05:08:22.689125+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/server.rb:262:in `block in run'
+2015-04-06T05:08:22.689130+00:00 app[web.1]: 
+2015-04-06T05:08:22.689129+00:00 app[web.1]: 
+2015-04-06T05:08:23.167009+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=vast-reef-1559.herokuapp.com request_id=33b2767e-6909-4471-8f35-bde8736911c6 fwd="213.221.40.154" dyno=web.1 connect=1ms service=9ms status=200 bytes=143
+2015-04-06T06:11:39.013165+00:00 heroku[web.1]: Idling
+2015-04-06T06:11:39.013856+00:00 heroku[web.1]: State changed from up to down
+2015-04-06T06:11:41.323826+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2015-04-06T06:11:41.899965+00:00 app[web.1]: - Goodbye!
+2015-04-06T06:11:41.899962+00:00 app[web.1]: === puma shutdown: 2015-04-06 06:11:41 +0000 ===
+2015-04-06T06:11:41.899879+00:00 app[web.1]: - Gracefully stopping, waiting for requests to finish
+2015-04-06T06:11:42.792613+00:00 heroku[web.1]: Process exited with status 0
+2015-04-06T08:05:28.857948+00:00 heroku[api]: Deploy 5cde30d by zaqo@narod.ru
+2015-04-06T08:05:28.857948+00:00 heroku[api]: Release v14 created by zaqo@narod.ru
+2015-04-06T08:08:22.898919+00:00 heroku[api]: Starting process with command `bundle exec rake db:migrate` by zaqo@narod.ru
+2015-04-06T08:08:26.628714+00:00 heroku[run.8691]: Awaiting client
+2015-04-06T08:08:26.659920+00:00 heroku[run.8691]: Starting process with command `bundle exec rake db:migrate`
+2015-04-06T08:08:26.991977+00:00 heroku[run.8691]: State changed from starting to up
+2015-04-06T08:08:32.154804+00:00 heroku[run.8691]: State changed from up to complete
+2015-04-06T08:08:32.136267+00:00 heroku[run.8691]: Process exited with status 0
+2015-04-06T08:09:28.892841+00:00 heroku[api]: Scale to web=1 by zaqo@narod.ru
+2015-04-06T08:10:07.009227+00:00 heroku[web.1]: Unidling
+2015-04-06T08:10:07.009514+00:00 heroku[web.1]: State changed from down to starting
+2015-04-06T08:10:10.591896+00:00 heroku[web.1]: Starting process with command `bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-production}`
+2015-04-06T08:10:12.904582+00:00 app[web.1]: Puma starting in single mode...
+2015-04-06T08:10:12.904712+00:00 app[web.1]: * Min threads: 5, max threads: 5
+2015-04-06T08:10:12.904650+00:00 app[web.1]: * Version 2.11.1 (ruby 2.0.0-p643), codename: Intrepid Squirrel
+2015-04-06T08:10:12.904754+00:00 app[web.1]: * Environment: production
+2015-04-06T08:10:14.964942+00:00 app[web.1]: Use Ctrl-C to stop
+2015-04-06T08:10:14.964398+00:00 app[web.1]: * Listening on tcp://0.0.0.0:58038
+2015-04-06T08:10:15.179120+00:00 heroku[web.1]: State changed from starting to up
+2015-04-06T08:10:16.242949+00:00 heroku[router]: at=info method=GET path="/" host=vast-reef-1559.herokuapp.com request_id=1bda3849-1848-416f-9dff-5f3587be3cd5 fwd="213.221.40.154" dyno=web.1 connect=1ms service=186ms status=404 bytes=1744
+2015-04-06T08:10:16.127240+00:00 app[web.1]: Started GET "/" for 213.221.40.154 at 2015-04-06 08:10:16 +0000
+2015-04-06T08:10:16.238760+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/inflector/methods.rb:236:in `each'
+2015-04-06T08:10:16.238759+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/inflector/methods.rb:238:in `block in constantize'
+2015-04-06T08:10:16.238791+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/journey/router.rb:59:in `each'
+2015-04-06T08:10:16.238750+00:00 app[web.1]: 
+2015-04-06T08:10:16.238765+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/routing/route_set.rb:78:in `controller_reference'
+2015-04-06T08:10:16.238757+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/inflector/methods.rb:238:in `const_get'
+2015-04-06T08:10:16.238762+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/inflector/methods.rb:236:in `inject'
+2015-04-06T08:10:16.238794+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/routing/route_set.rb:678:in `call'
+2015-04-06T08:10:16.238755+00:00 app[web.1]: ActionController::RoutingError (uninitialized constant ShiftsController):
+2015-04-06T08:10:16.238795+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/etag.rb:23:in `call'
+2015-04-06T08:10:16.238801+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/flash.rb:254:in `call'
+2015-04-06T08:10:16.238764+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/inflector/methods.rb:236:in `constantize'
+2015-04-06T08:10:16.238767+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/routing/route_set.rb:68:in `controller'
+2015-04-06T08:10:16.238768+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/routing/route_set.rb:46:in `call'
+2015-04-06T08:10:16.238789+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/journey/router.rb:73:in `block in call'
+2015-04-06T08:10:16.238798+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/head.rb:11:in `call'
+2015-04-06T08:10:16.238800+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+2015-04-06T08:10:16.238797+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/conditionalget.rb:25:in `call'
+2015-04-06T08:10:16.238803+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:225:in `context'
+2015-04-06T08:10:16.238814+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+2015-04-06T08:10:16.238823+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/tagged_logging.rb:26:in `tagged'
+2015-04-06T08:10:16.238804+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:220:in `call'
+2015-04-06T08:10:16.238813+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+2015-04-06T08:10:16.238824+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/tagged_logging.rb:68:in `tagged'
+2015-04-06T08:10:16.238792+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/journey/router.rb:59:in `call'
+2015-04-06T08:10:16.238810+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+2015-04-06T08:10:16.238826+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/rack/logger.rb:20:in `call'
+2015-04-06T08:10:16.238805+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/cookies.rb:560:in `call'
+2015-04-06T08:10:16.238809+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activerecord-4.1.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+2015-04-06T08:10:16.238822+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/tagged_logging.rb:68:in `block in tagged'
+2015-04-06T08:10:16.238827+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+2015-04-06T08:10:16.238853+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/configuration.rb:82:in `call'
+2015-04-06T08:10:16.238856+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/server.rb:375:in `process_client'
+2015-04-06T08:10:16.238807+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activerecord-4.1.8/lib/active_record/query_cache.rb:36:in `call'
+2015-04-06T08:10:16.238812+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/callbacks.rb:82:in `run_callbacks'
+2015-04-06T08:10:16.238816+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+2015-04-06T08:10:16.238820+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/rack/logger.rb:20:in `block in call'
+2015-04-06T08:10:16.238817+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+2015-04-06T08:10:16.238819+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/rack/logger.rb:38:in `call_app'
+2015-04-06T08:10:16.238851+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/engine.rb:514:in `call'
+2015-04-06T08:10:16.238860+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/thread_pool.rb:104:in `block in spawn_thread'
+2015-04-06T08:10:16.238831+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/activesupport-4.1.8/lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+2015-04-06T08:10:16.238833+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/actionpack-4.1.8/lib/action_dispatch/middleware/static.rb:84:in `call'
+2015-04-06T08:10:16.238852+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/railties-4.1.8/lib/rails/application.rb:144:in `call'
+2015-04-06T08:10:16.238855+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/server.rb:507:in `handle_request'
+2015-04-06T08:10:16.238861+00:00 app[web.1]: 
+2015-04-06T08:10:16.238828+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+2015-04-06T08:10:16.238830+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/runtime.rb:17:in `call'
+2015-04-06T08:10:16.238857+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/server.rb:262:in `block in run'
+2015-04-06T08:10:16.238859+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/puma-2.11.1/lib/puma/thread_pool.rb:104:in `call'
+2015-04-06T08:10:16.238863+00:00 app[web.1]: 
+2015-04-06T08:10:16.238849+00:00 app[web.1]:   vendor/bundle/ruby/2.0.0/gems/rack-1.5.2/lib/rack/sendfile.rb:112:in `call'

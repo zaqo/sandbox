@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405204933) do
+ActiveRecord::Schema.define(version: 20150407141841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20150405204933) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "number"
+    t.string   "name_it"
   end
 
   create_table "shifts", force: true do |t|
@@ -52,7 +54,10 @@ ActiveRecord::Schema.define(version: 20150405204933) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "time"
+    t.integer  "person_id"
   end
+
+  add_index "shifts", ["person_id"], name: "index_shifts_on_person_id", using: :btree
 
   create_table "shotdowns", force: true do |t|
     t.time     "start"
