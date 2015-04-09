@@ -1,0 +1,77 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2015-04-08 21:37:32
+  end: 2015-04-08 21:37:32
+  sortament: MyString
+  vel90: 1
+  vel51: 1
+  fan261: 1
+  fan262: 1
+  fan263: 1
+  fan264: 1
+  fan265: 1
+  fan266: 1
+  waterpc: 1
+  waterl: 1
+  flour: 1
+  watert: 1
+  headt1: 1
+  headt2: 1
+  cylt1: 1
+  cylt2: 1
+  rot1: 1
+  rot2: 1
+  pressbar1: 1
+  pressbar2: 1
+  tr90tinteger: MyString
+  tr51t: 1
+  tr51f: 1
+  tr561t: 1
+  tr561f: 1
+  tr562t: 1
+  tr562f: 1
+  tr563t: 1
+  tr563f: 1
+  tr564t: 1
+  tr564f: 1
+  tr565t: 1
+  tr565f: 1
+
+two:
+  start: 2015-04-08 21:37:32
+  end: 2015-04-08 21:37:32
+  sortament: MyString
+  vel90: 1
+  vel51: 1
+  fan261: 1
+  fan262: 1
+  fan263: 1
+  fan264: 1
+  fan265: 1
+  fan266: 1
+  waterpc: 1
+  waterl: 1
+  flour: 1
+  watert: 1
+  headt1: 1
+  headt2: 1
+  cylt1: 1
+  cylt2: 1
+  rot1: 1
+  rot2: 1
+  pressbar1: 1
+  pressbar2: 1
+  tr90tinteger: MyString
+  tr51t: 1
+  tr51f: 1
+  tr561t: 1
+  tr561f: 1
+  tr562t: 1
+  tr562f: 1
+  tr563t: 1
+  tr563f: 1
+  tr564t: 1
+  tr564f: 1
+  tr565t: 1
+  tr565f: 1
