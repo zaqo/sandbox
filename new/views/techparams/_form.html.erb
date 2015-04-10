@@ -1,0 +1,113 @@
+#encoding: CP1251
+<%= form_for ([@shift, @shift.techparams.build]) do |f|%>
+
+
+	<p>
+		<%= f.label "Время:" %><br>
+		<%= f.number_field(:ttime, in: 0.0..23.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Кол-во воды, %" %><br>
+		<%= f.number_field( :waterpc, in: 30.0..50.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Кол-во воды, л " %><br>
+		<%= f.number_field( :waterl, in: 250.0..800.0, step: 50.0)%>
+	</p>
+	<p>
+		<%= f.label "Кол-во муки, кг" %><br>
+		<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. воды на замес, гр" %><br>
+		<%= f.number_field( :tempz, in: 20.0..50.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. головок 1, гр" %><br>
+		<%= f.number_field( :temph1, in: 20.0..50.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. головок 2, гр" %><br>
+		<%= f.number_field( :temph2, in: 20.0..50.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. цилиндров 1, гр" %><br>
+		<%= f.number_field( :tempcyl1, in: 20.0..50.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. цилиндров 2, гр" %><br>
+		<%= f.number_field( :tempcyl2, in: 20.0..50.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Обороты шн., об/мин" %><br>
+		<%= f.number_field( :rotate1, in: 30.0..60.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Обороты шн., об/мин" %><br>
+		<%= f.number_field( :rotate2, in: 30.0..60.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Давление пресс. 1, бар" %><br>
+		<%= f.number_field( :press1, in: 70.0..120.0, step: 5.0)%>
+	</p>
+	<p>
+		<%= f.label "Давление пресс. 2, бар" %><br>
+		<%= f.number_field( :press2, in: 70.0..120.0, step: 5.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. TR-90, гр" %><br>
+		<%= f.number_field( :temp90, in: 50.0..150.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. TR-51, гр" %><br>
+		<%= f.number_field( :temp51, in: 40.0..80.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Влажность TR-51, %" %><br>
+		<%= f.number_field( :hum51, in: 30.0..90.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. TR-56 1 ярус, гр" %><br>
+		<%= f.number_field( :temp56_1, in: 40.0..80.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Влажность TR-56 1 ярус, %" %><br>
+		<%= f.number_field( :hum56_1, in: 20.0..100.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. TR-56 2 ярус, гр" %><br>
+		<%= f.number_field( :temp56_2, in: 35.0..70.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Влажность TR-56 2 ярус, %" %><br>
+		<%= f.number_field( :hum56_2, in: 20.0..100.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Темп. TR-56 3 ярус, гр" %><br>
+		<%= f.number_field( :temp56_3, in: 30.0..60.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Влажность TR-56 3 ярус, %" %><br>
+		<%= f.number_field( :hum56_3, in: 20.0..100.0, step: 1.0)%>
+		</p>
+<p>
+		<%= f.label "Темп. TR-56 4 ярус, гр" %><br>
+		<%= f.number_field( :temp56_4, in: 30.0..50.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Влажность TR-56 4 ярус, %" %><br>
+		<%= f.number_field( :hum56_4, in: 20.0..100.0, step: 1.0)%>
+		</p>
+<p>
+		<%= f.label "Темп. TR-56 5 ярус, гр" %><br>
+		<%= f.number_field( :temp56_5, in: 25.0..40.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Влажность TR-56 5 ярус, %" %><br>
+		<%= f.number_field( :hum56_5, in: 20.0..100.0, step: 1.0)%>
+	</p>		
+	<p>
+		<%= submit_tag("Ввод") %>
+	</p>
+<% end %>
+

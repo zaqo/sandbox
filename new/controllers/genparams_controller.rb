@@ -1,0 +1,2 @@
+class GenparamsController < ApplicationController
+end

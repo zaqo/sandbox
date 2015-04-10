@@ -1,0 +1,33 @@
+#encoding: CP1251
+<%= form_for :product, url: product_path(@product), method: :patch do |f|%>
+
+	<% if @product.errors.any? %>
+		<div id="error_explanation">
+		  <h2>
+		   <%= pluralize(@product.errors.count,"error")%> необходимо устранить:
+		  </h2>
+			<ul>
+				<% @product.errors.full_messages.each do |msg|%>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<p>
+		<%= f.label "Номер:" %><br>
+		<%= f.number_field(:number, in: 33.0..99.0, step: 1.0)%>
+	</p>
+	<p>
+		<%= f.label "Название:" %><br>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label("Product \(Italian\):") %><br>
+		<%= f.text_field :name_it%>
+	
+	</p>
+	<p>
+		<%= submit_tag("Ввод") %>
+	</p>
+<% end %>
+

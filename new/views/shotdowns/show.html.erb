@@ -1,0 +1,28 @@
+#encoding: CP1251
+	
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: cyan">
+	    <th colspan="4">Останов оборудования</th>
+    	</tr>
+    	<tr  style="background-color: lightblue">
+	    
+	    <th>Время начала:</th>
+	    <th>Время окончания:</th>
+	    <th>Место:</th>
+	    <th>Причина:</th>
+	    
+	</tr>
+	<tr>	
+		<% re = /(\d+):(\d+)/ %>
+		<% ms=re.match(@shotdown.start.to_s)%>
+		<% me=re.match(@shotdown.end.to_s)%>	
+	<td align="center"><%=ms[0] %></td>
+	<td align="center"><%=me %></td>
+	
+	<% sd_array = Shotdowntype.find(@shotdown.reason) %>
+	<td><%=sd_array.location%></td>
+	<td><%=sd_array.description%></td>
+</tr>
+</table>
+	<%=link_to '<-Назад->', shifts_path%>

@@ -1,0 +1,28 @@
+#encoding: CP1251
+<%= form_for :shift, url: shift_path(@shift), method: :patch do |f|%>
+
+	<% if @shift.errors.any? %>
+		<div id="error_explanation">
+		  <h2>
+		   <%= pluralize(@shift.errors.count,"error")%> необходимо устранить:
+		  </h2>
+			<ul>
+				<% @shift.errors.full_messages.each do |msg|%>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<p>
+		<%= f.label "Время" %><br>
+		<%= f.time_field :time%>
+	</p>
+	<p>
+		<%= f.label "Начальник" %><br>
+		<%= f.text_field :manager%>
+	</p>
+	<p>
+		<%= f.submit%>
+	</p>
+<% end %>
+

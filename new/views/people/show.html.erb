@@ -1,0 +1,16 @@
+#encoding: CP1251
+<p>
+	<strong>Имя: </strong>
+	<%= @person.name%>
+  </p>
+  <p>
+	<strong>Фамилия: </strong>
+	<%= @person.surname%>
+  </p>
+ <p>
+	<strong>Должность: </strong>
+	<%= @person.prof.to_i %>
+  </p>
+		
+	<%=link_to '<-Список сотрудников->', people_path%> | <%=link_to '<-Изменить->', edit_person_path(@person)%>
+

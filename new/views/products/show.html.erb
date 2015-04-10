@@ -1,0 +1,16 @@
+#encoding: CP1251
+<p>
+	<strong>Номер по каталогу: </strong>
+	<%= @product.number%>
+  </p>
+  <p>
+	<strong>Название: </strong>
+	<%= @product.name%>
+  </p>
+ <p>
+	<strong>Product (It.): </strong>
+	<%= @product.name_it %>
+  </p>
+		
+	<%=link_to '<-Ассортимент->', products_path%> | <%=link_to '<-Изменить->', edit_product_path(@product)%>
+

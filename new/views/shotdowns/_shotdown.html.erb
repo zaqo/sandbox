@@ -1,0 +1,18 @@
+#encoding: CP1251
+	<p>
+		<strong> Начало: </strong>
+		<%= shotdown.start %>
+	</p>
+	<p>
+		<strong> Конец: </strong>
+		<%= shotdown.end %>
+  	</p>
+  	<p>
+		<strong> Причина: </strong>
+		<%= shotdown.reason %>
+	</p>
+	<p>
+	<%= link_to 'Удалить останов', [shotdown.shift, shotdown],
+					method: :delete,
+					data: {confirm: 'Вы уверены?'}%>
+	</p>
