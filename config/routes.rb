@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 	     	resources :shotdowns
 		resources :techparams
 		resources :humparams
+		resources :genparams
+
      end
      resources :people
      resources :shotdowntypes
