@@ -1,0 +1,160 @@
+#encoding: CP1251
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr align="center" style="background-color:silver" align="center">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	</tr>
+	<tr></tr>
+    	<tr align="center" style="background-color: silver">
+    		<td> % </td>
+    		<td> л/ч </td>	
+    		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		
+	</tr>
+	<tr>
+		<%= form_for ([@shift, @shift.genparams.build]) do |f|%>
+		<td>
+			<%= f.number_field(:start, in: 0.0..23.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :waterpc, in: 30.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :waterl, in: 250.0..800.0, step: 50.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :watert, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :headt1, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :headt2, in: 20.0..50.0, step: 1.0)%>
+		</td>
+
+	</tr>	
+	<tr align="center" style="background-color: silver">
+		<th align="center" rowspan="2" colspan="2">Т цил., гр</th>
+	    	<th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    	<th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    	<th rowspan="3">Т TR-90, град</th>
+	    
+	</tr>
+	<tr></tr>
+	<tr style="background-color: silver">
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>		
+	</tr>	
+	<tr>
+		<td>
+			<%= f.number_field( :cylt1, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :cylt2, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :rot1, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :rot2, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :pressbar1, in: 70.0..120.0, step: 5.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :pressbar2, in: 70.0..120.0, step: 5.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr90t, in: 50.0..150.0, step: 1.0)%>
+		</td>
+		</tr> 
+	<tr style="background-color: silver">
+		<th align="center" colspan="2">TR-51</th>
+	    	<th align="center" colspan="4">TR-56</th>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td rowspan="2" >T, град</td>	
+	    	<td rowspan="2" >Ф, %</td>
+	    	<td colspan="2">1 яр</td>
+	    	<td colspan="2">2 яр</td>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td> Т, гр </td>
+		<td> Ф, % </td>
+		<td> Т, гр </td>
+		<td> Ф, % </td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.number_field( :tr51t, in: 40.0..80.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr51f, in: 30.0..90.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr561t, in: 40.0..80.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr561f, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr562t, in: 35.0..70.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr562f, in: 20.0..100.0, step: 1.0)%>
+		</td>
+	</tr>
+	<tr align="center" style="background-color: silver">	
+		<th colspan="6">TR-56</th>
+		
+	</tr> 
+	<tr style="background-color: silver">
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+    		<td > Ф, % </td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.number_field( :tr563t, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr563f, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr564t, in: 30.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr564f, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr565t, in: 25.0..40.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr565f, in: 20.0..100.0, step: 1.0)%>
+		</td>		
+	<tr align="center">
+		<td colspan="6" ><%= submit_tag("Ввод") %><td>
+	</tr>
+	<% end %>
+
+	</tr>
+</table>

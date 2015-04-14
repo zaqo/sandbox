@@ -1,0 +1,77 @@
+#encoding: CP1251
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	    <th rowspan="2" colspan="2">Т цил., гр</th>
+	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    <th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    <th rowspan="3">Т TR-90, град</th>
+	    <th colspan="2">TR-51</th>
+	    <th colspan="10">TR-56</th>
+	    <th rowspan="3" ></th>
+	</tr>
+	<tr  style="background-color: silver">
+	    <th rowspan="2" >T, град</th>	
+	    <th rowspan="2" >Ф, %</th>
+	    <th colspan="2">1 яр</th>
+	    <th colspan="2">2 яр</th>
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+    	</tr>
+    	<tr  style="background-color: silver">
+    		<td > % </td>
+    		<td > л/ч </td>	
+    		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+    		<td > Ф, % </td>
+	</tr>
+		<tr>
+			<td align="center"> <%=@techparam.ttime%> </td>
+			<td> <%=@techparam.waterpc%> </td>
+			<td> <%=@techparam.waterl%> </td>
+			<td><%=@techparam.flour%></td>
+			<td><%=@techparam.tempz%></td>
+			<td><%=@techparam.temph1%></td>
+			<td><%=@techparam.temph2%></td>
+			<td><%=@techparam.tempcyl1%></td>
+			<td><%=@techparam.tempcyl2%></td>
+			<td><%=@techparam.rotate1%></td>
+			<td><%=@techparam.rotate2%></td>
+			<td><%=@techparam.press1%></td>
+			<td><%=@techparam.press2%></td>
+			<td><%=@techparam.temp90%></td>
+			<td><%=@techparam.temp51%></td>
+			<td><%=@techparam.hum51%></td>
+			<td><%=@techparam.temp56_1%></td><td><%=@techparam.hum56_1%></td>
+			<td><%=@techparam.temp56_2%></td><td><%=@techparam.hum56_2%></td>
+			<td><%=@techparam.temp56_3%></td><td><%=@techparam.hum56_3%></td>
+			<td><%=@techparam.temp56_4%></td><td><%=@techparam.hum56_4%></td>
+			<td><%=@techparam.temp56_5%></td><td><%=@techparam.hum56_5%></td>
+			<td> <%=link_to 'Удалить', techparam_path(@techparam),
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	
+		
+	<%=link_to '<- Назад  ->', shifts_path%> 
+

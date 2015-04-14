@@ -1,0 +1,27 @@
+#encoding: CP1251
+<h1 align="center">СМЕНЫ</h1>
+
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th>Дата:</th>	
+	    <th>Время начала:</th>
+	    <th>Начальник:</th>
+	    <th colspan="3"></th>
+	</tr>
+
+	<% @shifts.each do |shift|%>
+		<tr>
+		        <td align="center"> <%=shift.created_at.strftime("%d %B")%> </td>
+			<% shift_times = {'0'=>'8:00','1'=>'20:00'}%>
+			<td align="center"> <%= shift_times[shift.time] %> </td>
+			<td> <%=Person.find(shift.manager.to_i).surname%> </td>
+			<td> <%=link_to 'Просмотр', shift_path(shift)%> </td>
+			<td> <%=link_to 'Изменить', edit_shift_path(shift)%> </td>
+			<td> <%=link_to 'Удалить', shift_path(shift),
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	<%end%>
+
+</table>
+<p align="center"><%= link_to '<- Новая СМЕНА ->', new_shift_path%></p>

@@ -1,0 +1,55 @@
+#encoding: CP1251
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: pink">
+	    <th rowspan="3" >¬рем€</th>		    
+	    <th colspan="7">—тадии сушки</th>
+	</tr>
+	<tr  style="background-color: pink">
+	    <th rowspan="2" >TR-90</th>	
+	    <th rowspan="2" >TR-51</th>
+	    <th colspan="5">TR-56</th>
+    	</tr>
+    	<tr  align="center" style="background-color: pink">
+    		<td > 1 €р </td>
+    		<td > 2 €р </td>	
+    		<td > 3 €р </td>
+		<td > 4 €р </td>
+		<td > 5 €р </td>
+		
+	</tr>
+	<tr>
+		<%= form_for ([@shift, @shift.humparams.build]) do |f|%>
+		<td>
+			<%= f.time_select(:htime)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr90, in: 25.0..35.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr51, in: 15.0..25.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr56_1, in: 15.0..20.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr56_2, in: 15.0..18.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr56_3, in: 14.0..16.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr56_4, in: 13.0..15.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tr56_5, in: 10.0..15.0, step: 1.0)%>
+		</td>
+			
+	</tr>	
+	<tr>
+		<td align="center" colspan="9"><%= submit_tag("¬вод") %></td>
+		<% end %>	
+	</tr>
+
+
+</table>

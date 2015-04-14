@@ -1,0 +1,33 @@
+#encoding: CP1251
+<%= form_for :person, url: person_path(@person), method: :patch do |f|%>
+
+	<% if @person.errors.any? %>
+		<div id="error_explanation">
+		  <h2>
+		   <%= pluralize(@person.errors.count,"error")%> необходимо устранить:
+		  </h2>
+			<ul>
+				<% @person.errors.full_messages.each do |msg|%>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<p>
+		<%= f.label "Имя" %><br>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label "Фамилия" %><br>
+		<%= f.text_field :surname%>
+	
+	</p>
+	<p>
+		<%= f.label "Должность:" %><br>
+		<%= f.select( :prof,[['Оператор',1],['КИП',2],['ПСХ',3],['Технолог',4]]) %>
+	</p>
+	<p>
+		<%= submit_tag("Ввод") %>
+	</p>
+<% end %>
+

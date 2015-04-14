@@ -1,0 +1,487 @@
+#encoding: CP1251
+<table align="left" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: pink">
+		<th > Линия PAVAN </th>
+    	</tr>
+    	<tr  style="background-color: grey" >
+		<% re = /(\d+):(\d+)/ %>
+		<% rt = /(\d+)-(\d+)-(\d+)/ %>
+		<% t= Time.now %>
+		<% d= rt.match(t.to_s) %>
+		<th style="color: white"><%=d%></th>
+	    
+	</tr>
+	<tr style="background-color: lightgrey">
+		<td><strong>Смена: </strong>
+		<%shift_time={'0'=>'08:00','1'=>'20:00'}%>
+		<%= shift_time[@shift.time]%></td>
+  	</tr>
+  	<tr style="background-color: lightgrey">
+		 <td><strong>Начальник: </strong>
+		<% manager = @shift.manager.to_i%>
+		<% personrec = Person.find(manager)%>
+		<%= personrec.surname+' '+personrec.name%></td>
+	</tr>
+	<tr style="background-color: lightgrey">
+	 <td><strong>Оператор: </strong>
+		<% operator = @shift.operator.to_i%>
+		<% personrec = Person.find(operator)%>
+		<%= personrec.surname+' '+personrec.name%></td>
+	</tr>
+	<tr style="background-color: lightgrey">
+		 <td><strong>Технолог: </strong>
+		<% technolog = @shift.technolog.to_i%>
+		<% personrec = Person.find(technolog)%>
+		<%= personrec.surname+' '+personrec.name%></td>
+	</tr>
+	<tr style="background-color: lightgrey">
+		 <td><strong>Слесарь: </strong>
+		<% mechanic = @shift.mechanic.to_i%>
+		<% personrec = Person.find(mechanic)%>
+		<%= personrec.surname+' '+personrec.name%></td>
+	</tr>	
+	<tr style="background-color: lightgrey">
+		 <td><strong>Слесарь ПСХ: </strong>
+		<% mechanicpsh = @shift.mechanicpsh.to_i%>
+		<% personrec = Person.find(mechanicpsh)%>
+		<%= personrec.surname+' '+personrec.name%></td>
+	</tr>
+	<tr style="background-color: lightgrey">
+		 <td><strong>Слесарь КИП: </strong>
+		<% kip = @shift.mechanicpsh.to_i%>
+		<% personrec = Person.find(kip)%>
+		<%= personrec.surname+' '+personrec.name%></td>
+	</tr>
+	<tr style="background-color: lightgrey">
+		 <td><strong>Ассортимент: </strong>
+		<% id = @shift.sortament.to_i%>
+		<% productrec = Product.find(id)%>
+		<%= productrec.name%></td>
+	</tr>
+	<tr style="background-color: lightgrey">
+		<td><strong>Мука: </strong>
+		<%flour={'1'=>'ХП','0'=>'Крупка'}%>
+		<%= flour[@shift.flour]%></td>
+  	</tr>
+</table>
+	<h2 align="center">Остановы:</h2>
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: lightblue">
+	    <th>№:</th>	
+	    <th>Время начала:</th>
+	    <th>Время окончания:</th>
+	    <th>Место:</th>
+	    <th>Причина:</th>
+	    <th colspan="2"></th>
+	</tr>
+	<% i=0 %>
+	<% @shift.shotdowns.each do |shotdown|%>
+		<tr>
+			<% i+=1 %>
+			<td align="center"> <%=i %> </td>
+			<% ms=re.match(shotdown.start.to_s)%>
+			<td align="center"> <%= ms[0]%> </td>
+			<% me=re.match(shotdown.end.to_s)%>
+			<td align="center"> <%= me%> </td>	
+			<% sd_type=Shotdowntype.find(shotdown.reason)%>
+			<td align="left"> <%=sd_type.location%> </td>
+			<td> <%=sd_type.description%> </td>
+			<td> <%=link_to 'Просмотр', [shotdown.shift,shotdown]%> </td>
+			<td> <%=link_to 'Удалить', [shotdown.shift,shotdown],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	<%end%>
+
+</table>
+<br><br>
+<table align="right" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: skyblue">
+		<th>Добавить останов:</th>
+	</tr>
+	
+	<tr>	
+		<td><%= render 'shotdowns/form' %></td>
+	</tr>
+</table>
+<h2>====   ВЛАЖНОСТЬ ПОЛУФАБРИКАТА   ====</h2>
+<table align="left" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: pink">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="3" >Ассортимент</th>
+	    <th colspan="7">Стадии сушки</th>
+	    <th rowspan="3"> </th>
+	</tr>
+	<tr  style="background-color: pink">
+	    <th rowspan="2" >TR-90</th>	
+	    <th rowspan="2" >TR-51</th>
+	    <th colspan="5">TR-56</th>
+    	</tr>
+    	<tr  style="background-color: pink">
+    		<td > 1 яр </td>
+    		<td > 2 яр </td>	
+    		<td > 3 яр </td>
+		<td > 4 яр </td>
+		<td > 5 яр </td>
+		
+	</tr>
+	<% @shift.humparams.each do |humparam|%>
+	<tr align="center">
+			<% mh=re.match(humparam.htime.to_s)%>
+			<td align="center"> <%=mh%> </td>
+			<td>  Рожки </td>
+			<td> <%=humparam.tr90%>%</td>
+			<td><%=humparam.tr51%>%</td>
+			<td><%=humparam.tr56_1%>%</td>
+			<td><%=humparam.tr56_2%>%</td>
+			<td><%=humparam.tr56_3%>%</td>
+			<td><%=humparam.tr56_4%>%</td>
+			<td><%=humparam.tr56_5%>%</td>
+			
+			<td> <%=link_to 'Удалить', [humparam.shift,humparam],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+	</tr>	
+	<%end%>
+</table>
+
+<br><br><br><br><br><br><br><br>
+<hr>
+<h2 align="center">***  ЗАПИСИ ТЕХНОЛОГИЧЕСКИХ ПАРАМЕТРОВ ЗА   СМЕНУ ***</h2>
+<hr>
+<br><br><br>
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	    <th rowspan="2" colspan="2">Т цил., гр</th>
+	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    <th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    <th rowspan="3">Т TR-90, град</th>
+	    <th colspan="2">TR-51</th>
+	    <th colspan="10">TR-56</th>
+	    <th rowspan="3" ></th>
+	</tr>
+	<tr  style="background-color: silver">
+	    <th rowspan="2" >T, град</th>	
+	    <th rowspan="2" >Ф, %</th>
+	    <th colspan="2">1 яр</th>
+	    <th colspan="2">2 яр</th>
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+    	</tr>
+    	<tr  style="background-color: silver">
+    		<td > % </td>
+    		<td > л/ч </td>	
+    		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+    		<td > Ф, % </td>
+	</tr>
+	<% @shift.techparams.each do |techparam|%>
+		<tr align="center">
+			<td><%=techparam.ttime%>:00</td>
+			<td> <%=techparam.waterpc%>% </td>
+			<td> <%=techparam.waterl%> </td>
+			<td align="center"><%=techparam.flour%></td>
+			<td align="center"><%=techparam.tempz%></td>
+			<td><%=techparam.temph1%></td>
+			<td><%=techparam.temph2%></td>
+			<td><%=techparam.tempcyl1%></td>
+			<td><%=techparam.tempcyl2%></td>
+			<td align="center"><%=techparam.rotate1%></td>
+			<td><%=techparam.rotate2%></td>
+			<td><%=techparam.press1%></td>
+			<td align="center"><%=techparam.press2%></td>
+			<td align="center"><%=techparam.temp90%></td>
+			<td><%=techparam.temp51%></td>
+			<td><%=techparam.hum51%>%</td>
+			<td><%=techparam.temp56_1%></td><td><%=techparam.hum56_1%>%</td>
+			<td><%=techparam.temp56_2%></td><td><%=techparam.hum56_2%>%</td>
+			<td><%=techparam.temp56_3%></td><td><%=techparam.hum56_3%>%</td>
+			<td><%=techparam.temp56_4%></td><td><%=techparam.hum56_4%>%</td>
+			<td><%=techparam.temp56_5%></td><td><%=techparam.hum56_5%>%</td>
+			<td> <%=link_to 'Удалить', [techparam.shift,techparam],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	<%end%>
+
+</table>
+	
+
+<br><br><br><br><br><br>
+<hr>
+<h2 align="center">*** ВВОД ТЕХНОЛОГИЧЕСКИХ ПАРАМЕТРОВ ***</h2>
+<hr>
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr align="center" style="background-color:silver" align="center">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	</tr>
+	<tr></tr>
+    	<tr align="center" style="background-color: silver">
+    		<td> % </td>
+    		<td> л/ч </td>	
+    		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		
+	</tr>
+	<tr>
+		<%= form_for ([@shift, @shift.techparams.build]) do |f|%>
+		<td>
+			<%= f.number_field(:ttime, in: 0.0..23.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :waterpc, in: 30.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :waterl, in: 250.0..800.0, step: 50.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tempz, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temph1, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temph2, in: 20.0..50.0, step: 1.0)%>
+		</td>
+
+	</tr>	
+	<tr align="center" style="background-color: silver">
+		<th align="center" rowspan="2" colspan="2">Т цил., гр</th>
+	    	<th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    	<th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    	<th rowspan="3">Т TR-90, град</th>
+	    
+	</tr>
+	<tr></tr>
+	<tr style="background-color: silver">
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>		
+	</tr>	
+	<tr>
+		<td>
+			<%= f.number_field( :tempcyl1, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tempcyl2, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :rotate1, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :rotate2, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :press1, in: 70.0..120.0, step: 5.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :press2, in: 70.0..120.0, step: 5.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp90, in: 50.0..150.0, step: 1.0)%>
+		</td>
+		</tr> 
+	<tr style="background-color: silver">
+		<th align="center" colspan="2">TR-51</th>
+	    	<th align="center" colspan="4">TR-56</th>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td rowspan="2" >T, град</td>	
+	    	<td rowspan="2" >Ф, %</td>
+	    	<td colspan="2">1 яр</td>
+	    	<td colspan="2">2 яр</td>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td> Т, гр </td>
+		<td> Ф, % </td>
+		<td> Т, гр </td>
+		<td> Ф, % </td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.number_field( :temp51, in: 40.0..80.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum51, in: 30.0..90.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_1, in: 40.0..80.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_1, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_2, in: 35.0..70.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_2, in: 20.0..100.0, step: 1.0)%>
+		</td>
+	</tr>
+	<tr align="center" style="background-color: silver">	
+		<th colspan="6">TR-56</th>
+		
+	</tr> 
+	<tr style="background-color: silver">
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+    		<td > Ф, % </td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.number_field( :temp56_3, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_3, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_4, in: 30.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_4, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_5, in: 25.0..40.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_5, in: 20.0..100.0, step: 1.0)%>
+		</td>		
+	<tr align="center">
+		<td colspan="6" ><%= submit_tag("Ввод") %><td>
+	</tr>
+	<% end %>
+
+	</tr>
+</table>
+
+<hr>
+<h2 align="center">ВВОД ВЛАЖНОСТИ ПОЛУФАБРИКАТА</h2>
+<hr>
+<%= render 'humparams/form' %>
+</hr>		
+<br>
+<hr>
+<h2 align="center">ВВОД ПАРАМЕТРОВ РАБОТЫ</h2>
+<hr>
+<%= render 'genparams/form' %>
+</hr>		
+<br>
+<br>
+<h1 align="center">ТЕХНОЛОГИЧЕСКИЕ ПАРАМЕТРЫ УСТАНОВЛЕННЫЕ НА ЛИНИИ</h1>
+
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	    <th rowspan="2" colspan="2">Т цил., гр</th>
+	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    <th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    <th rowspan="3">Т TR-90, град</th>
+	    <th colspan="2">TR-51</th>
+	    <th colspan="10">TR-56</th>
+	    <th rowspan="3" ></th>
+	</tr>
+	<tr  style="background-color: silver">
+	    <th rowspan="2" >T, град</th>	
+	    <th rowspan="2" >Ф, %</th>
+	    <th colspan="2">1 яр</th>
+	    <th colspan="2">2 яр</th>
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+    	</tr>
+    	<tr  style="background-color: silver">
+    		<td > % </td>
+    		<td > л/ч </td>	
+    		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+    		<td > Ф, % </td>
+	</tr>
+	<% @shift.genparams.each do |p|%>
+		<tr>
+			<td align="center"> <%=p.start%> </td>
+			<td> <%=p.waterpc%> </td>
+			<td> <%=p.waterl%> </td>
+			<td><%=p.flour%></td>
+			<td><%=p.watert%></td>
+			<td><%=p.headt1%></td>
+			<td><%=p.headt2%></td>
+			<td><%=p.cylt1%></td>
+			<td><%=p.cylt2%></td>
+			<td><%=p.rot1%></td>
+			<td><%=p.rot2%></td>
+			<td><%=p.pressbar1%></td>
+			<td><%=p.pressbar2%></td>
+			<td><%=p.tr90t%></td>
+			<td><%=p.tr51t%></td>
+			<td><%=p.tr51f%></td>
+			<td><%=p.tr561t%></td><td><%=p.tr561f%></td>
+			<td><%=p.tr562t%></td><td><%=p.tr562f%></td>
+			<td><%=p.tr563t%></td><td><%=p.tr563f%></td>
+			<td><%=p.tr564t%></td><td><%=p.tr564f%></td>
+			<td><%=p.tr565t%></td><td><%=p.tr565f%></td>
+			<td> <%=link_to 'Удалить', [p.shift,p],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	<%end%>
+
+</table>
+
+
+	<%=link_to '<-Назад->', shifts_path%> | <%=link_to '<-Изменить->', edit_shift_path(@shift)%>| <%=link_to '<-Сотрудники->', people_path%>
+

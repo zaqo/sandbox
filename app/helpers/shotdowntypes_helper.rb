@@ -1,0 +1,2 @@
+module ShotdowntypesHelper
+end

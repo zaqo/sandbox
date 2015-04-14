@@ -1,0 +1,77 @@
+#encoding: CP1251
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	    <th rowspan="2" colspan="2">Т цил., гр</th>
+	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    <th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    <th rowspan="3">Т TR-90, град</th>
+	    <th colspan="2">TR-51</th>
+	    <th colspan="10">TR-56</th>
+	    <th rowspan="3" ></th>
+	</tr>
+	<tr  style="background-color: silver">
+	    <th rowspan="2" >T, град</th>	
+	    <th rowspan="2" >Ф, %</th>
+	    <th colspan="2">1 яр</th>
+	    <th colspan="2">2 яр</th>
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+    	</tr>
+    	<tr  style="background-color: silver">
+    		<td > % </td>
+    		<td > л/ч </td>	
+    		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+    		<td > Ф, % </td>
+	</tr>
+		<tr>  <% @shift.genparams.each do |genparam|%>
+			<td align="center"> <%=genparam.start%> </td>
+			<td> <%=genparam.waterpc%> </td>
+			<td> <%=genparam.waterl%> </td>
+			<td><%=genparam.flour%></td>
+			<td><%=genparam.watert%></td>
+			<td><%=genparam.headt1%></td>
+			<td><%=genparam.headt2%></td>
+			<td><%=genparam.cylt1%></td>
+			<td><%=genparam.cylt2%></td>
+			<td><%=genparam.rot1%></td>
+			<td><%=genparam.rot2%></td>
+			<td><%=genparam.pressbar1%></td>
+			<td><%=genparam.pressbar2%></td>
+			<td><%=genparam.tr90t%></td>
+			<td><%=genparam.tr51t%></td>
+			<td><%=genparam.tr51f%></td>
+			<td><%=genparam.tr561t%></td><td><%=genparam.tr561f%></td>
+			<td><%=genparam.tr562t%></td><td><%=genparam.tr562f%></td>
+			<td><%=genparam.tr563t%></td><td><%=genparam.tr563f%></td>
+			<td><%=genparam.tr564t%></td><td><%=genparam.tr564f%></td>
+			<td><%=genparam.tr565t%></td><td><%=genparam.tr565f%></td>
+			<td> <%=link_to 'Удалить', [genparam.shift,genparam],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	
+		
+	<%=link_to '<- Назад  ->', shifts_path%> 
+

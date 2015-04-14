@@ -1,0 +1,2 @@
+module ShotdownsHelper
+end

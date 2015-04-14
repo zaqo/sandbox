@@ -1,0 +1,13 @@
+#encoding: CP1251
+<p>
+	<strong>Место: </strong>
+	<%= @shotdowntype.location%>
+  </p>
+  <p>
+	<strong>Описание: </strong>
+	<%= @shotdowntype.description%>
+  </p>
+ 
+		
+	<%=link_to '<- Список причин ->', shotdowntypes_path%> | <%=link_to '<-Изменить->', edit_shotdowntype_path(@shotdowntype)%>
+

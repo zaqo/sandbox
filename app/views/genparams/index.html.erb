@@ -1,0 +1,80 @@
+#encoding: CP1251
+<h1 align="center">ТЕХНОЛОГИЧЕСКИЕ ПАРАМЕТРЫ УСТАНОВЛЕННЫЕ НА ЛИНИИ</h1>
+
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	    <th rowspan="2" colspan="2">Т цил., гр</th>
+	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    <th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    <th rowspan="3">Т TR-90, град</th>
+	    <th colspan="2">TR-51</th>
+	    <th colspan="10">TR-56</th>
+	    <th rowspan="3" ></th>
+	</tr>
+	<tr  style="background-color: silver">
+	    <th rowspan="2" >T, град</th>	
+	    <th rowspan="2" >Ф, %</th>
+	    <th colspan="2">1 яр</th>
+	    <th colspan="2">2 яр</th>
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+    	</tr>
+    	<tr  style="background-color: silver">
+    		<td > % </td>
+    		<td > л/ч </td>	
+    		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > 1 </td>
+		<td > 2 </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+		<td > Ф, % </td>
+		<td > Т, град </td>
+    		<td > Ф, % </td>
+	</tr>
+	<% @shift.genparams.each do |p|%>
+		<tr>
+			<td align="center"> <%=p.start%> </td>
+			<td> <%=p.waterpc%> </td>
+			<td> <%=p.waterl%> </td>
+			<td><%=p.flour%></td>
+			<td><%=p.watert%></td>
+			<td><%=p.headt1%></td>
+			<td><%=p.headt2%></td>
+			<td><%=p.cylt1%></td>
+			<td><%=p.cylt2%></td>
+			<td><%=p.rot1%></td>
+			<td><%=p.rot2%></td>
+			<td><%=p.pressbar1%></td>
+			<td><%=p.pressbar2%></td>
+			<td><%=p.tr90t%></td>
+			<td><%=p.tr51t%></td>
+			<td><%=p.tr51f%></td>
+			<td><%=p.tr561t%></td><td><%=p.tr561f%></td>
+			<td><%=p.tr562t%></td><td><%=p.tr562f%></td>
+			<td><%=p.tr563t%></td><td><%=p.tr563f%></td>
+			<td><%=p.tr564t%></td><td><%=p.tr564f%></td>
+			<td><%=p.tr565t%></td><td><%=p.tr565f%></td>
+			<td> <%=link_to 'Удалить', [genparam.shift,genparam],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	<%end%>
+
+</table>
+<p align="center"><%= link_to '<- Новая запись ->', new_techparam_path%></p>

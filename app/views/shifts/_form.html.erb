@@ -1,0 +1,93 @@
+#encoding: CP1251
+
+
+	<%= form_for (@shift) do |f|%>
+
+	<% if @shift.errors.any? %>
+		<div id="error_explanation">
+		  <h2>
+		   <%= pluralize(@shift.errors.count,"error")%> необходимо устранить:
+		  </h2>
+			<ul>
+				<% @shift.errors.full_messages.each do |msg|%>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th align="center" >Ввод параметров:</th>	
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Время" %><br>
+			<%= f.select(:time,[['08:00',0],['20:00',1]])%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Начальник" %><br>
+			<%# men_array = Person.all.map{|p| [p.surname,p.id]} %>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:manager, Person.all,:id,:surname)%>
+			<%# :person_id = men_array.index(:manager) %>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Оператор" %><br>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:operator, Person.all,:id,:surname)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label " Слесарь" %><br>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:mechanic, Person.all,:id,:surname)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Слесарь ПСХ" %><br>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:mechanicpsh, Person.all,:id,:surname)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Слесарь КИПа" %><br>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:kip, Person.all,:id,:surname)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Технолог" %><br>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:technolog, Person.all,:id,:surname)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Ассортимент" %><br>
+			<% options_from_collection_for_select(Product.all,:id,:name)%>	
+			<%= f.collection_select(:sortament, Product.all,:id,:name)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Мука" %><br>
+			<%= f.select(:flour,[['Крупка',0],['ХП',1]])%>
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			<%= submit_tag("Ввод") %>
+		</td>
+	
+	</tr>
+<% end %>
+</table>

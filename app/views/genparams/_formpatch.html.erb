@@ -1,0 +1,29 @@
+#encoding: CP1251
+<%= form_for :shotdowntype, url: shotdowntype_path(@shotdowntype), method: :patch do |f|%>
+
+	<% if @shotdowntype.errors.any? %>
+		<div id="error_explanation">
+		  <h2>
+		   <%= pluralize(@shotdowntype.errors.count,"error")%> необходимо устранить:
+		  </h2>
+			<ul>
+				<% @shotdowntype.errors.full_messages.each do |msg|%>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<p>
+		<%= f.label "Место:" %><br>
+		<%= f.text_field :location %>
+	</p>
+	<p>
+		<%= f.label "Описание:" %><br>
+		<%= f.text_field :description%>
+	</p>
+
+	<p>
+		<%= submit_tag("Ввод") %>
+	</p>
+<% end %>
+

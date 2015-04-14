@@ -1,0 +1,23 @@
+#encoding: CP1251
+<%= form_for ([@shift, @shift.shotdowns.build]) do |f|%>
+		<p >
+		<%= f.label "Начало:" %><br>
+			<%=f.time_select :start %>
+		</p>
+		<p >
+			<%= f.label "Конец:" %><br>
+			<%=f.time_select :end %>
+		</p>
+		
+		<p>
+			<%= f.label "Причина:" %><br>
+			<% sd_array = Shotdowntype.all.map{|p| [p.description,p.id]} %>
+	
+		<%= f.select(:reason, sd_array)%>
+	
+		</p>
+		<hr>
+		<p align="center">
+			<%= submit_tag("Ввод") %>
+		</p>
+	<% end %>

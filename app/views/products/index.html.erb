@@ -1,0 +1,26 @@
+#encoding: CP1251
+<h1 align="center">АССОРТИМЕНТ</h1>
+
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: silver">
+	    <th>Номер:</th>
+	    <th>Название:</th>
+	    <th>Product (It.):</th>
+	    <th colspan="3"></th>
+	</tr>
+	<% p_list=Product.all.order('number ASC') %>
+	<% p_list.each do |p|%>
+		<tr>
+			<td align="center"> <%=p.number%> </td>
+			<td> <%=p.name%> </td>
+			<td> <%=p.name_it%> </td>
+			<td> <%=link_to 'Просмотр', product_path(p)%> </td>
+			<td> <%=link_to 'Изменить', edit_product_path(p)%> </td>
+			<td> <%=link_to 'Удалить', product_path(p),
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	<%end%>
+
+</table>
+<p align="center"><%= link_to '<- Новый продукт ->', new_product_path%></p>

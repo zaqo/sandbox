@@ -1,0 +1,5 @@
+class People < ActiveRecord::Base
+  
+  validates {:Name, :Surname} presence: true
+
+end
