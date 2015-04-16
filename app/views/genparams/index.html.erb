@@ -49,7 +49,7 @@
     		<td > т, % </td>
 	</tr>
 	<% sh=  params[:shift_id]%>
-		<%= render plain: sh%>
+		<%#= render plain: sh%>
 		<% Genparam.where(:shift_id=>sh).each do |p|%>
 	
 		<%# if p.shift_id == params[:shift_id] %>
@@ -86,5 +86,5 @@
 <hr>
 <h2 align="center">ббнд оюпюлерпнб пюанрш</h2>
 <hr>
-<%#= render 'genparams/form_new' %>
+<%= render 'form_new' %>
 <p align="center"><%= link_to '<- ялемш ->', shifts_path%></p>

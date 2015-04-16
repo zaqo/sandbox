@@ -16,7 +16,8 @@
 		
 	</tr>
 	<tr>
-		<%= form_for ([@genparam.shift,@genparam]) do |f|%>
+		<% shi =Shift.find(params[:shift_id])%>
+		<%= form_for ([shi,shi.genparams.build]) do |f|%>
 		<td>
 			<%= f.number_field(:start, in: 0.0..23.0, step: 1.0)%>
 		</td>
