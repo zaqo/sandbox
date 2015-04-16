@@ -400,7 +400,10 @@
 <h2 align="center">ббнд оюпюлерпнб пюанрш</h2>
 <hr>
 <%#= render 'genparams/form' %>
-<%=link_to '<-Input genparams data ->', [@shift, @shift.genparam.build] %>
+<% @shift.genparams.build do |genparam|%>
+<%=link_to '<-Input genparams data ->', [genparam.shift, genparam] %>
+<%end%>
+
 </hr>
 <br>
 <br>

@@ -48,7 +48,7 @@
 		<td > Т, град </td>
     		<td > Ф, % </td>
 	</tr>
-	<% @shift.genparams.each do |p|%>
+	<% @genparams.each do |p|%>
 		<tr>
 			<td align="center"> <%=p.start%> </td>
 			<td> <%=p.waterpc%> </td>
@@ -71,10 +71,10 @@
 			<td><%=p.tr563t%></td><td><%=p.tr563f%></td>
 			<td><%=p.tr564t%></td><td><%=p.tr564f%></td>
 			<td><%=p.tr565t%></td><td><%=p.tr565f%></td>
-			<td> <%=link_to 'Удалить', [genparam.shift,genparam],
+			<td> <%=link_to 'Удалить', [p.shift,p],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
 		</tr>	
 	<%end%>
 
 </table>
-<p align="center"><%= link_to '<- Новая запись ->', new_techparam_path%></p>
+<p align="center"><%= link_to '<- Новая запись ->', shifts_path%></p>
