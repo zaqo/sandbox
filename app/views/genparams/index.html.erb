@@ -48,7 +48,11 @@
 		<td > Т, град </td>
     		<td > Ф, % </td>
 	</tr>
-	<% @genparams.each do |p|%>
+	<% sh=  params[:shift_id]%>
+		<%= render plain: sh%>
+		<% Genparam.where(:shift_id=>sh).each do |p|%>
+	
+		<%# if p.shift_id == params[:shift_id] %>
 		<tr>
 			<td align="center"> <%=p.start%> </td>
 			<td> <%=p.waterpc%> </td>
@@ -73,8 +77,14 @@
 			<td><%=p.tr565t%></td><td><%=p.tr565f%></td>
 			<td> <%=link_to 'Удалить', [p.shift,p],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
-		</tr>	
+		</tr>
+	    <%# end %>	
 	<%end%>
 
 </table>
-<p align="center"><%= link_to '<- Новая запись ->', shifts_path%></p>
+<br>
+<hr>
+<h2 align="center">ВВОД ПАРАМЕТРОВ РАБОТЫ</h2>
+<hr>
+<%#= render 'genparams/form_new' %>
+<p align="center"><%= link_to '<- СМЕНЫ ->', shifts_path%></p>

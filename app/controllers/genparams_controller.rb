@@ -14,12 +14,12 @@ class GenparamsController < ApplicationController
 	
 	def new
 		@shift = Shift.find(params[:shift_id])
-		@genparam = Genparam.new
+		@genparam = @shift.genparams.build
 	end
 
 	def create
 		@shift = Shift.find(params[:shift_id])
-		@genparam = @shift.genparams.new(gen_params)
+		@genparam = @shift.genparams.create(gen_params)
 		redirect_to shift_path(@shift)
 	end
 
