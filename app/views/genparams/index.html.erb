@@ -49,6 +49,7 @@
     		<td > т, % </td>
 	</tr>
 	<% sh=  params[:shift_id]%>
+	<% shift=Shift.find(sh)%>
 		<%#= render plain: sh%>
 		<% Genparam.where(:shift_id=>sh).each do |p|%>
 	
@@ -87,4 +88,4 @@
 <h2 align="center">ббнд оюпюлерпнб пюанрш</h2>
 <hr>
 <%= render 'form_new' %>
-<p align="center"><%= link_to '<- ялемш ->', shifts_path%></p>
+<p align="center"><%= link_to '<- мюгюд ->', shift_path(shift)%></p>
