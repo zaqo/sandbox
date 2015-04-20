@@ -1,113 +1,176 @@
 #encoding: CP1251
-<%= form_for ([@shift, @shift.techparams.build]) do |f|%>
+<h2 align="center">*** ВВОД ТЕХНОЛОГИЧЕСКИХ ПАРАМЕТРОВ ***</h2>
+<hr>
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr align="center" style="background-color:silver" align="center">
+	    <th rowspan="3" >Время</th>	
+	    <th rowspan="2" colspan="2">Вода</th>
+	    <th rowspan="3">Мука, кг/ч</th>
+	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="2" colspan="2">Т головок, гр</th>
+	</tr>
+	<tr></tr>
+    	<tr align="center" style="background-color: silver">
+    		<td> % </td>
+    		<td> л/ч </td>	
+    		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		
+	</tr>
+	<tr>
+		<%= form_for ([@shift, @shift.techparams.build]) do |f|%>
+			<% if @shift.errors.any? %>
+			<div id="error_explanation">
+		  		<h2>
+		   		<%= pluralize(@shift.errors.count,"error")%> необходимо устранить:
+		  		</h2>
+				<ul>
+				<% @shift.errors.full_messages.each do |msg|%>
+					<li><%= msg %></li>
+				<% end %>
+				</ul>
+				</div>
+			<% end %>	
 
+		<td>
+			<%= f.time_select(:ttime)%>
+		</td>
+		<td>
+			<%= f.number_field( :waterpc, in: 30.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :waterl, in: 250.0..800.0, step: 50.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tempz, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temph1, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temph2, in: 20.0..50.0, step: 1.0)%>
+		</td>
 
-	<p>
-		<%= f.label "Время:" %><br>
-		<%= f.number_field(:ttime, in: 0.0..23.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Кол-во воды, %" %><br>
-		<%= f.number_field( :waterpc, in: 30.0..50.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Кол-во воды, л " %><br>
-		<%= f.number_field( :waterl, in: 250.0..800.0, step: 50.0)%>
-	</p>
-	<p>
-		<%= f.label "Кол-во муки, кг" %><br>
-		<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. воды на замес, гр" %><br>
-		<%= f.number_field( :tempz, in: 20.0..50.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. головок 1, гр" %><br>
-		<%= f.number_field( :temph1, in: 20.0..50.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. головок 2, гр" %><br>
-		<%= f.number_field( :temph2, in: 20.0..50.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. цилиндров 1, гр" %><br>
-		<%= f.number_field( :tempcyl1, in: 20.0..50.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. цилиндров 2, гр" %><br>
-		<%= f.number_field( :tempcyl2, in: 20.0..50.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Обороты шн., об/мин" %><br>
-		<%= f.number_field( :rotate1, in: 30.0..60.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Обороты шн., об/мин" %><br>
-		<%= f.number_field( :rotate2, in: 30.0..60.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Давление пресс. 1, бар" %><br>
-		<%= f.number_field( :press1, in: 70.0..120.0, step: 5.0)%>
-	</p>
-	<p>
-		<%= f.label "Давление пресс. 2, бар" %><br>
-		<%= f.number_field( :press2, in: 70.0..120.0, step: 5.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. TR-90, гр" %><br>
-		<%= f.number_field( :temp90, in: 50.0..150.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. TR-51, гр" %><br>
-		<%= f.number_field( :temp51, in: 40.0..80.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Влажность TR-51, %" %><br>
-		<%= f.number_field( :hum51, in: 30.0..90.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. TR-56 1 ярус, гр" %><br>
-		<%= f.number_field( :temp56_1, in: 40.0..80.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Влажность TR-56 1 ярус, %" %><br>
-		<%= f.number_field( :hum56_1, in: 20.0..100.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. TR-56 2 ярус, гр" %><br>
-		<%= f.number_field( :temp56_2, in: 35.0..70.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Влажность TR-56 2 ярус, %" %><br>
-		<%= f.number_field( :hum56_2, in: 20.0..100.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Темп. TR-56 3 ярус, гр" %><br>
-		<%= f.number_field( :temp56_3, in: 30.0..60.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Влажность TR-56 3 ярус, %" %><br>
-		<%= f.number_field( :hum56_3, in: 20.0..100.0, step: 1.0)%>
-		</p>
-<p>
-		<%= f.label "Темп. TR-56 4 ярус, гр" %><br>
-		<%= f.number_field( :temp56_4, in: 30.0..50.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Влажность TR-56 4 ярус, %" %><br>
-		<%= f.number_field( :hum56_4, in: 20.0..100.0, step: 1.0)%>
-		</p>
-<p>
-		<%= f.label "Темп. TR-56 5 ярус, гр" %><br>
-		<%= f.number_field( :temp56_5, in: 25.0..40.0, step: 1.0)%>
-	</p>
-	<p>
-		<%= f.label "Влажность TR-56 5 ярус, %" %><br>
-		<%= f.number_field( :hum56_5, in: 20.0..100.0, step: 1.0)%>
-	</p>		
-	<p>
-		<%= submit_tag("Ввод") %>
-	</p>
-<% end %>
+	</tr>	
+	<tr align="center" style="background-color: silver">
+		<th align="center" rowspan="2" colspan="2">Т цил., гр</th>
+	    	<th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
+	    	<th rowspan="2" colspan="2">Давление пресс., бар</th>
+	    	<th rowspan="3">Т TR-90, град</th>
+	    
+	</tr>
+	<tr></tr>
+	<tr style="background-color: silver">
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>
+		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>		
+	</tr>	
+	<tr>
+		<td>
+			<%= f.number_field( :tempcyl1, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :tempcyl2, in: 20.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :rotate1, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :rotate2, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :press1, in: 70.0..120.0, step: 5.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :press2, in: 70.0..120.0, step: 5.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp90, in: 50.0..150.0, step: 1.0)%>
+		</td>
+		</tr> 
+	<tr style="background-color: silver">
+		<th align="center" colspan="2">TR-51</th>
+	    	<th align="center" colspan="4">TR-56</th>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td rowspan="2" >T, град</td>	
+	    	<td rowspan="2" >Ф, %</td>
+	    	<td colspan="2">1 яр</td>
+	    	<td colspan="2">2 яр</td>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td> Т, гр </td>
+		<td> Ф, % </td>
+		<td> Т, гр </td>
+		<td> Ф, % </td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.number_field( :temp51, in: 40.0..80.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum51, in: 30.0..90.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_1, in: 40.0..80.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_1, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_2, in: 35.0..70.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_2, in: 20.0..100.0, step: 1.0)%>
+		</td>
+	</tr>
+	<tr align="center" style="background-color: silver">	
+		<th colspan="6">TR-56</th>
+		
+	</tr> 
+	<tr style="background-color: silver">
+	    <th colspan="2">3 яр</th>
+	    <th colspan="2">4 яр</th>
+	    <th colspan="2">5 яр</th>
+	</tr>
+	<tr align="center" style="background-color: silver">
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+		<td > Ф, % </td>
+		<td > Т, гр </td>
+    		<td > Ф, % </td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.number_field( :temp56_3, in: 30.0..60.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_3, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_4, in: 30.0..50.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_4, in: 20.0..100.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :temp56_5, in: 25.0..40.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :hum56_5, in: 20.0..100.0, step: 1.0)%>
+		</td>		
+	<tr align="center">
+		<td colspan="6" ><%= submit_tag("Ввод") %><td>
+	</tr>
+	<% end %>
+
+	</tr>
+</table>
 

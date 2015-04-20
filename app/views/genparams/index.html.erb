@@ -48,14 +48,11 @@
 		<td > р, ЦПЮД </td>
     		<td > т, % </td>
 	</tr>
-	<% sh=  params[:shift_id]%>
-	<% shift=Shift.find(sh)%>
-		<%#= render plain: sh%>
-		<% Genparam.where(:shift_id=>sh).each do |p|%>
-	
-		<%# if p.shift_id == params[:shift_id] %>
-		<tr>
-			<td align="center"> <%=p.start%> </td>
+		<% re = /(\d+):(\d+)/ %>
+		<% @shift.genparams.each do |p|%>	
+			<% gt=re.match(p.start.to_s)%>
+			<tr align="center">
+			<td align="center"> <%=gt[0]%> </td>
 			<td> <%=p.waterpc%> </td>
 			<td> <%=p.waterl%> </td>
 			<td><%=p.flour%></td>
@@ -88,4 +85,4 @@
 <h2 align="center">ббнд оюпюлерпнб пюанрш</h2>
 <hr>
 <%= render 'form_new' %>
-<p align="center"><%= link_to '<- мюгюд ->', shift_path(shift)%></p>
+<p align="center"><%= link_to '<- мюгюд ->', shift_path(@shift)%></p>

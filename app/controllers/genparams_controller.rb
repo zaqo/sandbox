@@ -4,6 +4,7 @@ class GenparamsController < ApplicationController
 	http_basic_authenticate_with name: "master", password: "pasta", except: [:index,:show] 
 
 	def index
+		@shift = Shift.find(params[:shift_id])
 		@genparams=Genparam.all
 	end
 

@@ -1,5 +1,5 @@
 #encoding: CP1251
-<h1 align="center">ТЕХНОЛОГИЧЕСКИЕ ПАРАМЕТРЫ В СУШИЛКЕ</h1>
+<h1 align="center">ЗАПИСИ ТЕХНОЛОГИЧЕСКИХ ПАРАМЕТРОВ В СУШИЛКЕ</h1>
 
 
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
@@ -48,9 +48,11 @@
 		<td > Т, град </td>
     		<td > Ф, % </td>
 	</tr>
-	<% @techparams.each do |p|%>
+	<% re = /(\d+):(\d+)/ %>
+	<% @shift.techparams.each do |p|%>
+		<% gt=re.match(p.ttime.to_s)%>
 		<tr>
-			<td align="center"> <%=p.ttime%> </td>
+			<td align="center"> <%=gt%> </td>
 			<td> <%=p.waterpc%> </td>
 			<td> <%=p.waterl%> </td>
 			<td><%=p.flour%></td>
@@ -71,10 +73,15 @@
 			<td><%=p.temp56_3%></td><td><%=p.hum56_3%></td>
 			<td><%=p.temp56_4%></td><td><%=p.hum56_4%></td>
 			<td><%=p.temp56_5%></td><td><%=p.hum56_5%></td>
-			<td> <%=link_to 'Удалить', techparam_path(p),
+			<td> <%=link_to 'Удалить', [p.shift,p],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
 		</tr>	
 	<%end%>
 
 </table>
-<p align="center"><%= link_to '<- Новая запись ->', new_techparam_path%></p>
+<br>
+<hr>
+<h2 align="center">ВВОД ПАРАМЕТРОВ РАБОТЫ</h2>
+<hr>
+<%= render 'form' %>
+<p align="center"><%= link_to '<- НАЗАД ->', shift_path(@shift)%></p>
