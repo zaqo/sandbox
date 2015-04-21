@@ -1,20 +1,15 @@
 #encoding: CP1251
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
-	<tr align="center" style="background-color:silver" align="center">
-	    <th rowspan="3" >Время</th>	
-	    <th rowspan="2" colspan="2">Вода</th>
-	    <th rowspan="3">Мука, кг/ч</th>
-	    <th rowspan="3">Т воды на замес, град</th>
-	    <th rowspan="2" colspan="2">Т головок, гр</th>
-	</tr>
-	<tr></tr>
-    	<tr align="center" style="background-color: silver">
-    		<td> % </td>
-    		<td> л/ч </td>	
-    		<td align="center"> 1 </td>
-		<td align="center"> 2 </td>
-		
-	</tr>
+	<tr align="center" style="background-color:silver">
+	    <th rowspan="2" >Время</th>
+	    <th rowspan="2">Ассортимент</th>
+            <th rowspan="2">Мука, кг/ч</th>	
+	    <th rowspan="1" colspan="2">Скорость движения</th>    
+	 </tr>
+	 <tr align="center" style="background-color:silver">
+		 <th>TR-90</th>
+		 <th>TR-51</th>
+	 </tr>  
 	<tr>
 
 		<%= form_for ([@shift,@shift.genparams.build]) do |f|%>
@@ -33,6 +28,65 @@
 		<td align="center">
 			<%= f.time_select(:start)%>
 		</td>
+		<td>	
+		
+			<% options_from_collection_for_select(Product.all,:id,:name)%>	
+			<%= f.collection_select(:sortament, Product.all,:id,:name)%>
+		</td>
+		<td>
+			<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :vel90, in: 70.0..90.0, step: 1.0)%>
+		</td>
+		<td>
+			<%= f.number_field( :vel51, in: 35.0..60.0, step: 1.0)%>
+		</td>
+
+	</tr>
+	</table>
+	<br>
+	<p align="center">СХЕМА РАБОТЫ ВЕНТИЛЯТОРОВ</p>	
+	<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr align="center" style="background-color:silver">
+ 		<th >264</th>
+	    	<th >265</th>
+	    	<th >266</th>
+	</tr>
+	<tr>
+		<td><%= f.check_box (:fan264)%></td>
+		<td><%= f.check_box (:fan265)%></td>
+		<td><%= f.check_box (:fan266)%></td>
+	</tr>
+<tr align="center" style="background-color:silver">
+ 		<th >261</th>
+	    	<th >262</th>
+	    	<th >263</th>
+	</tr>	
+	<tr>
+		<td><%= f.check_box (:fan261)%></td>
+		<td><%= f.check_box (:fan262)%></td>
+		<td><%= f.check_box (:fan263)%></td>
+	</tr>
+	</table>
+	<br>
+
+
+	<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr align="center" style="background-color:silver">
+ 		<th rowspan="1" colspan="2">Вода</th>
+	    	<th rowspan="2">T TR-90, град</th>
+	    	<th rowspan="2">Т воды, град</th>
+	    	<th rowspan="1" colspan="2">Т головок, гр</th>
+	</tr>
+	
+    	<tr align="center" style="background-color: silver">
+    		<td> % </td>
+    		<td> л/ч </td>	
+    		<td align="center"> 1 </td>
+		<td align="center"> 2 </td>		
+	</tr>	
+	<tr>
 		<td>
 			<%= f.number_field( :waterpc, in: 30.0..50.0, step: 1.0)%>
 		</td>
@@ -40,7 +94,7 @@
 			<%= f.number_field( :waterl, in: 250.0..800.0, step: 50.0)%>
 		</td>
 		<td>
-			<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>
+			<%= f.number_field( :tr90t, in: 50.0..150.0, step: 1.0)%>
 		</td>
 		<td>
 			<%= f.number_field( :watert, in: 20.0..50.0, step: 1.0)%>
@@ -51,13 +105,11 @@
 		<td>
 			<%= f.number_field( :headt2, in: 20.0..50.0, step: 1.0)%>
 		</td>
-
-	</tr>	
+	</tr>
 	<tr align="center" style="background-color: silver">
 		<th align="center" rowspan="2" colspan="2">Т цил., гр</th>
 	    	<th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
 	    	<th rowspan="2" colspan="2">Давление пресс., бар</th>
-	    	<th rowspan="3">Т TR-90, град</th>
 	    
 	</tr>
 	<tr></tr>
@@ -88,11 +140,12 @@
 		<td>
 			<%= f.number_field( :pressbar2, in: 70.0..120.0, step: 5.0)%>
 		</td>
-		<td>
-			<%= f.number_field( :tr90t, in: 50.0..150.0, step: 1.0)%>
-		</td>
 		</tr> 
-	<tr style="background-color: silver">
+		</table>
+		<br><br>
+		<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	
+		<tr style="background-color: silver">
 		<th align="center" colspan="2">TR-51</th>
 	    	<th align="center" colspan="4">TR-56</th>
 	</tr>
@@ -165,9 +218,7 @@
 			<%= f.number_field( :tr565f, in: 20.0..100.0, step: 1.0)%>
 		</td>		
 	<tr align="center">
-		<td colspan="6" ><%= submit_tag("Ввод") %><td>
+		<td colspan="6" ><%= submit_tag("Ввод") %></td>
 	</tr>
 	<% end %>
-
-	</tr>
 </table>

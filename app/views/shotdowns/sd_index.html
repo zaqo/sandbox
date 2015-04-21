@@ -1,0 +1,28 @@
+
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr  style="background-color: lightblue">
+	    <th>№:</th>	
+	    <th>Время начала:</th>
+	    <th>Время окончания:</th>
+	    <th>Место:</th>
+	    <th>Причина:</th>
+	    <th colspan="2"></th>
+	</tr>
+	<% i=0 %>
+	<% @shift.shotdowns.each do |shotdown|%>
+		<tr>
+			<% i+=1 %>
+			<td align="center"> <%=i %> </td>
+			<% ms=re.match(shotdown.start.to_s)%>
+			<td align="center"> <%= ms[0]%> </td>
+			<td align="center"> <%= re.match(shotdown.end.to_s) %> </td>	
+			<% sd_type=Shotdowntype.find(shotdown.reason)%>
+			<td align="left"> <%=sd_type.location%> </td>
+			<td> <%=sd_type.description%> </td>
+			<td> <%=link_to 'Просмотр', [shotdown.shift,shotdown]%> </td>
+			<td> <%=link_to 'Удалить', [shotdown.shift,shotdown],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		</tr>	
+	<%end%>
+
+</table>

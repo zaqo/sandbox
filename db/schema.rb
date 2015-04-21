@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420064710) do
+ActiveRecord::Schema.define(version: 20150421170849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,6 @@ ActiveRecord::Schema.define(version: 20150420064710) do
     t.string   "sortament"
     t.integer  "vel90"
     t.integer  "vel51"
-    t.integer  "fan261"
-    t.integer  "fan262"
-    t.integer  "fan263"
-    t.integer  "fan264"
-    t.integer  "fan265"
-    t.integer  "fan266"
     t.integer  "waterpc"
     t.integer  "waterl"
     t.integer  "flour"
@@ -56,6 +50,12 @@ ActiveRecord::Schema.define(version: 20150420064710) do
     t.datetime "updated_at"
     t.integer  "shift_id"
     t.integer  "tr90t"
+    t.string   "fan261"
+    t.string   "fan262"
+    t.string   "fan263"
+    t.string   "fan264"
+    t.string   "fan265"
+    t.string   "fan266"
   end
 
   add_index "genparams", ["shift_id"], name: "index_genparams_on_shift_id", using: :btree

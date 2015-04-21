@@ -4,10 +4,11 @@
 
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
 	<tr  style="background-color: silver">
-	    <th rowspan="3" >Время</th>	
+	    <th rowspan="3" >Время</th>
+	    <th rowspan="3" >Ассортимент</th>
 	    <th rowspan="2" colspan="2">Вода</th>
 	    <th rowspan="3">Мука, кг/ч</th>
-	    <th rowspan="3">Т воды на замес, град</th>
+	    <th rowspan="3">Т воды, град</th>
 	    <th rowspan="2" colspan="2">Т головок, гр</th>
 	    <th rowspan="2" colspan="2">Т цил., гр</th>
 	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
@@ -48,13 +49,23 @@
 		<td > Т, град </td>
     		<td > Ф, % </td>
 	</tr>
-		<% re = /(\d+):(\d+)/ %>
-		<% @shift.genparams.each do |p|%>	
+	<% re = /(\d+):(\d+)/ %>
+	<% p=@shift.genparams.last%>
+
 			<% gt=re.match(p.start.to_s)%>
 			<tr align="center">
-			<td align="center"> <%=gt[0]%> </td>
-			<td> <%=p.waterpc%> </td>
-			<td> <%=p.waterl%> </td>
+			<td align="center"> <%=gt[0]%> </td>		
+			<td>
+				<%st=p.sortament.to_i%>
+				<% if (st!=0) %>
+					<% sort=Product.find(st)%>
+					<%= sort.name%>
+				<%else %>
+					<%= "Not defined!"%>
+			<%end%>
+			</td>
+			<td><%=p.waterpc%> </td>
+			<td><%=p.waterl%> </td>
 			<td><%=p.flour%></td>
 			<td><%=p.watert%></td>
 			<td><%=p.headt1%></td>
@@ -76,13 +87,91 @@
 			<td> <%=link_to 'Удалить', [p.shift,p],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
 		</tr>
-	    <%# end %>	
-	<%end%>
+	  
 
 </table>
 <br>
+<table align="center">
+	<tr>
+		<td><p align="center">СХЕМА РАБОТЫ ВЕНТИЛЯТОРОВ</p></td>
+		<td><p align="center">| | |</p></td>
+		<td><p align="center">СКОРОСТЬ ДВИЖЕНИЯ СУШИЛКИ</p></td>	
+	</tr>
+	<tr><td>
+	<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr align="center" style="background-color:silver">
+ 		<th >264</th>
+	    	<th >265</th>
+	    	<th >266</th>
+	</tr>
+	<tr align="center">
+		<td>
+			<% if (p.fan264.to_i == 1)%>
+				<%= "X" %>
+			<%else%>
+				<%= "-" %>
+			<%end%>
+		</td>
+		<td><% if (p.fan265.to_i == 1)%>
+				<%= "X" %>
+			<%else%>
+				<%= "-" %>
+			<%end%>
+		</td>
+		<td><% if (p.fan266.to_i == 1)%>
+				<%= "X" %>
+			<%else%>
+				<%= "-" %>
+			<%end%>
+		</td>
+	</tr>
+<tr align="center" style="background-color:silver">
+ 		<th >261</th>
+	    	<th >262</th>
+	    	<th >263</th>
+	</tr>	
+	<tr align="center">
+		<td><% if (p.fan261.to_i == 1)%>
+				<%= "X" %>
+			<%else%>
+				<%= "-" %>
+			<%end%>
+		</td>
+		<td><% if (p.fan262.to_i == 1)%>
+				<%= "X" %>
+			<%else%>
+				<%= "-" %>
+			<%end%>
+		</td>
+		<td><% if (p.fan263.to_i == 1)%>
+				<%= "X" %>
+			<%else%>
+				<%= "-" %>
+			<%end%>
+		</td>
+	</tr>
+	</table>
+</td>
+<td></td>
+<td>
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+	<tr align="center" style="background-color:silver">
+ 		<th >TR - 90</th>
+	    	<th >TR - 51</th>
+
+	</tr>
+	<tr align="center">
+		<td><%= p.vel90%></td>
+		<td><%= p.vel51%></td>
+		
+	</tr>
+	</table>
+</td>
+</tr>
+</table>	
+<br>
 <hr>
-<h2 align="center">ВВОД ПАРАМЕТРОВ РАБОТЫ</h2>
+<h2 align="center">ИЗМЕНЕНИЕ ПАРАМЕТРОВ РАБОТЫ ЛИНИИ</h2>
 <hr>
 <%= render 'form_new' %>
 <p align="center"><%= link_to '<- НАЗАД ->', shift_path(@shift)%></p>

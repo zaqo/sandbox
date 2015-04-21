@@ -1,7 +1,7 @@
 #encoding: CP1251
 <table align="left" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
 	<tr  style="background-color: pink">
-		<th > Линия PAVAN </th>
+		<th > Линия PAVAN 2 </th>
     	</tr>
     	<tr  style="background-color: grey" >
 		<% re = /(\d+):(\d+)/ %>
@@ -64,7 +64,7 @@
 		<%= flour[@shift.flour]%></td>
   	</tr>
 </table>
-	<h2 align="center">Остановы:</h2>
+	<h2 align="center">==== ОСТАНОВЫ ====</h2>
 
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
 	<tr  style="background-color: lightblue">
@@ -82,8 +82,7 @@
 			<td align="center"> <%=i %> </td>
 			<% ms=re.match(shotdown.start.to_s)%>
 			<td align="center"> <%= ms[0]%> </td>
-			<% me=re.match(shotdown.end.to_s)%>
-			<td align="center"> <%= me%> </td>	
+			<td align="center"> <%= re.match(shotdown.end.to_s) %> </td>	
 			<% sd_type=Shotdowntype.find(shotdown.reason)%>
 			<td align="left"> <%=sd_type.location%> </td>
 			<td> <%=sd_type.description%> </td>
@@ -104,8 +103,9 @@
 		<td><%= render 'shotdowns/form' %></td>
 	</tr>
 </table>
-<h2>====   ВЛАЖНОСТЬ ПОЛУФАБРИКАТА   ====</h2>
-<table align="left" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
+<br><br>
+<h2 align="center">==== ВЛАЖНОСТЬ ПОЛУФАБРИКАТА ====</h2>
+<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
 	<tr  style="background-color: pink">
 	    <th rowspan="3" >Время</th>	
 	    <th rowspan="3" >Ассортимент</th>
@@ -127,8 +127,7 @@
 	</tr>
 	<% @shift.humparams.each do |humparam|%>
 	<tr align="center">
-			<% mh=re.match(humparam.htime.to_s)%>
-			<td align="center"> <%=mh%> </td>
+			<td align="center"> <%=re.match(humparam.htime.to_s)%> </td>
 			<td>  Рожки </td>
 			<td> <%=humparam.tr90%>%</td>
 			<td><%=humparam.tr51%>%</td>
@@ -144,7 +143,13 @@
 	<%end%>
 </table>
 
-<br><br><br><br><br><br><br><br>
+<hr>
+<h2 align="center">==== ВВОД ВЛАЖНОСТИ ПОЛУФАБРИКАТА ====</h2>
+<hr>
+<%= render 'humparams/form' %>
+</hr>		
+
+<br><br><br>
 <hr>
 <h2 align="center">***  ЗАПИСИ ТЕХНОЛОГИЧЕСКИХ ПАРАМЕТРОВ ЗА   СМЕНУ ***</h2>
 <hr>
@@ -197,7 +202,7 @@
 	</tr>
 	<% @shift.techparams.each do |techparam|%>
 		<tr align="center">
-			<td><%=techparam.ttime%>:00</td>
+			<td><%= re.match(techparam.ttime.to_s)%></td>
 			<td> <%=techparam.waterpc%>% </td>
 			<td> <%=techparam.waterl%> </td>
 			<td align="center"><%=techparam.flour%></td>
@@ -227,101 +232,17 @@
 	
 
 <br><br><br><br><br><br>
-
-<hr>
-<h2 align="center">ВВОД ВЛАЖНОСТИ ПОЛУФАБРИКАТА</h2>
-<hr>
-<%= render 'humparams/form' %>
-</hr>		
 <br>
 <hr>
 
 </hr>
-<br>
-<br>
-<h1 align="center">ТЕХНОЛОГИЧЕСКИЕ ПАРАМЕТРЫ УСТАНОВЛЕННЫЕ НА ЛИНИИ</h1>
 
-
-<table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
-	<tr  style="background-color: silver">
-	    <th rowspan="3" >Время</th>	
-	    <th rowspan="2" colspan="2">Вода</th>
-	    <th rowspan="3">Мука, кг/ч</th>
-	    <th rowspan="3">Т воды на замес, град</th>
-	    <th rowspan="2" colspan="2">Т головок, гр</th>
-	    <th rowspan="2" colspan="2">Т цил., гр</th>
-	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
-	    <th rowspan="2" colspan="2">Давление пресс., бар</th>
-	    <th rowspan="3">Т TR-90, град</th>
-	    <th colspan="2">TR-51</th>
-	    <th colspan="10">TR-56</th>
-	    <th rowspan="3" ></th>
-	</tr>
-	<tr  style="background-color: silver">
-	    <th rowspan="2" >T, град</th>	
-	    <th rowspan="2" >Ф, %</th>
-	    <th colspan="2">1 яр</th>
-	    <th colspan="2">2 яр</th>
-	    <th colspan="2">3 яр</th>
-	    <th colspan="2">4 яр</th>
-	    <th colspan="2">5 яр</th>
-    	</tr>
-    	<tr  style="background-color: silver">
-    		<td > % </td>
-    		<td > л/ч </td>	
-    		<td > 1 </td>
-		<td > 2 </td>
-		<td > 1 </td>
-		<td > 2 </td>
-		<td > 1 </td>
-		<td > 2 </td>
-		<td > 1 </td>
-		<td > 2 </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-    		<td > Ф, % </td>
-	</tr>
-	<% @shift.genparams.each do |p|%>
-		<tr>
-			<td align="center"> <%=p.start%> </td>
-			<td> <%=p.waterpc%> </td>
-			<td> <%=p.waterl%> </td>
-			<td><%=p.flour%></td>
-			<td><%=p.watert%></td>
-			<td><%=p.headt1%></td>
-			<td><%=p.headt2%></td>
-			<td><%=p.cylt1%></td>
-			<td><%=p.cylt2%></td>
-			<td><%=p.rot1%></td>
-			<td><%=p.rot2%></td>
-			<td><%=p.pressbar1%></td>
-			<td><%=p.pressbar2%></td>
-			<td><%=p.tr90t%></td>
-			<td><%=p.tr51t%></td>
-			<td><%=p.tr51f%></td>
-			<td><%=p.tr561t%></td><td><%=p.tr561f%></td>
-			<td><%=p.tr562t%></td><td><%=p.tr562f%></td>
-			<td><%=p.tr563t%></td><td><%=p.tr563f%></td>
-			<td><%=p.tr564t%></td><td><%=p.tr564f%></td>
-			<td><%=p.tr565t%></td><td><%=p.tr565f%></td>
-			<td> <%=link_to 'Удалить', [p.shift,p],
-				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
-		</tr>	
-	<%end%>
-
-</table>
 
 
 <%=link_to '<-Назад->', shifts_path%> | 
 <%=link_to '<-Изменить->', edit_shift_path(@shift)%>| 
 <%=link_to '<-Сотрудники->', people_path%>|
+<%=link_to '<-Причины->', shotdowntypes_path%>|
 <% @shift.genparams.build do |genparam|%>
 <%=link_to '<- Изменить параметры ->', [genparam.shift, genparam] %>
 <%end%>|
