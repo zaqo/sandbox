@@ -3,6 +3,7 @@ class HumparamsController < ApplicationController
 	http_basic_authenticate_with name: "master", password: "pasta", except: [:index,:show] 
 
 	def index
+		@shift = Shift.find(params[:shift_id])
 		@humparams=Humparam.all
 	end
 
@@ -12,6 +13,7 @@ class HumparamsController < ApplicationController
 	end
 	
 	def new
+		@shift = Shift.find(params[:shift_id])
 		@humparam = Humparam.new
 	end
 

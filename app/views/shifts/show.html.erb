@@ -96,21 +96,10 @@
 
 </table>
 <br><br>
-<table align="right" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
-	<tr  style="background-color: skyblue">
-		<th>Добавить останов:</th>
-	</tr>
-	
-	<tr>	
-		<td><%= render 'shotdowns/form' %></td>
-	</tr>
-</table>
-<br><br>
 <h2 align="center">==== ВЛАЖНОСТЬ ПОЛУФАБРИКАТА ====</h2>
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
 	<tr  style="background-color: pink">
 	    <th rowspan="3" >Время</th>	
-	    <th rowspan="3" >Ассортимент</th>
 	    <th colspan="7">Стадии сушки</th>
 	    <th rowspan="3"> </th>
 	</tr>
@@ -130,7 +119,6 @@
 	<% @shift.humparams.each do |humparam|%>
 	<tr align="center">
 			<td align="center"> <%=re.match(humparam.htime.to_s)%> </td>
-			<td>  Рожки </td>
 			<td> <%=humparam.tr90%>%</td>
 			<td><%=humparam.tr51%>%</td>
 			<td><%=humparam.tr56_1%>%</td>
@@ -145,10 +133,6 @@
 	<%end%>
 </table>
 
-<hr>
-<h2 align="center">==== ВВОД ВЛАЖНОСТИ ПОЛУФАБРИКАТА ====</h2>
-<hr>
-<%= render 'humparams/form' %>
 </hr>		
 
 <br><br><br>
@@ -245,9 +229,19 @@
 <%=link_to '<-Изменить->', edit_shift_path(@shift)%>| 
 <%=link_to '<-Сотрудники->', people_path%>|
 <%=link_to '<-Причины->', shotdowntypes_path%>|
+
+<% @shift.shotdowns.build do |stdown|%>
+<%=link_to '<- Остановы ->', [stdown.shift, stdown] %>
+<%end%>|
+
+<% @shift.humparams.build do |humparam|%>
+<%=link_to '<- Влажность ->', [humparam.shift, humparam] %>
+<%end%>|
+
 <% @shift.genparams.build do |genparam|%>
 <%=link_to '<- Изменить параметры ->', [genparam.shift, genparam] %>
 <%end%>|
+
 <% @shift.techparams.build do |techparam|%>
 <%=link_to '<- Запись измерений ->', [techparam.shift, techparam] %>
 <%end%>|

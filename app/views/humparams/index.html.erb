@@ -3,78 +3,45 @@
 
 
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
-	<tr  style="background-color: silver">
+	<tr  style="background-color: lightgrey">
 	    <th rowspan="3" >Время</th>	
-	    <th rowspan="2" colspan="2">Вода</th>
-	    <th rowspan="3">Мука, кг/ч</th>
-	    <th rowspan="3">Т воды на замес, град</th>
-	    <th rowspan="2" colspan="2">Т головок, гр</th>
-	    <th rowspan="2" colspan="2">Т цил., гр</th>
-	    <th rowspan="2" colspan="2">Об.шнеков, 1/мин</th>
-	    <th rowspan="2" colspan="2">Давление пресс., бар</th>
-	    <th rowspan="3">Т TR-90, град</th>
-	    <th colspan="2">TR-51</th>
-	    <th colspan="10">TR-56</th>
-	    <th rowspan="3" ></th>
+	    <th colspan="7">Стадии сушки</th>
+	    <th rowspan="3"> </th>
 	</tr>
-	<tr  style="background-color: silver">
-	    <th rowspan="2" >T, град</th>	
-	    <th rowspan="2" >Ф, %</th>
-	    <th colspan="2">1 яр</th>
-	    <th colspan="2">2 яр</th>
-	    <th colspan="2">3 яр</th>
-	    <th colspan="2">4 яр</th>
-	    <th colspan="2">5 яр</th>
+	<tr  style="background-color: lightgrey">
+	    <th rowspan="2" >TR-90</th>	
+	    <th rowspan="2" >TR-51</th>
+	    <th colspan="5">TR-56</th>
     	</tr>
-    	<tr  style="background-color: silver">
-    		<td > % </td>
-    		<td > л/ч </td>	
-    		<td > 1 </td>
-		<td > 2 </td>
-		<td > 1 </td>
-		<td > 2 </td>
-		<td > 1 </td>
-		<td > 2 </td>
-		<td > 1 </td>
-		<td > 2 </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-		<td > Ф, % </td>
-		<td > Т, град </td>
-    		<td > Ф, % </td>
+    	<tr  style="background-color: lightgrey">
+    		<td > 1 яр </td>
+    		<td > 2 яр </td>	
+    		<td > 3 яр </td>
+		<td > 4 яр </td>
+		<td > 5 яр </td>
+		
 	</tr>
+	<% re = /(\d+):(\d+)/ %>
 	<% @shift.humparams.each do |p|%>
-		<tr>
-			<td align="center"> <%=p.ttime%> </td>
-			<td> <%=p.waterpc%> </td>
-			<td> <%=p.waterl%> </td>
-			<td><%=p.flour%></td>
-			<td><%=p.tempz%></td>
-			<td><%=p.temph1%></td>
-			<td><%=p.temph2%></td>
-			<td><%=p.tempcyl1%></td>
-			<td><%=p.tempcyl2%></td>
-			<td><%=p.rotate1%></td>
-			<td><%=p.rotate2%></td>
-			<td><%=p.press1%></td>
-			<td><%=p.press2%></td>
-			<td><%=p.temp90%></td>
-			<td><%=p.temp51%></td>
-			<td><%=p.hum51%></td>
-			<td><%=p.temp56_1%></td><td><%=p.hum56_1%></td>
-			<td><%=p.temp56_2%></td><td><%=p.hum56_2%></td>
-			<td><%=p.temp56_3%></td><td><%=p.hum56_3%></td>
-			<td><%=p.temp56_4%></td><td><%=p.hum56_4%></td>
-			<td><%=p.temp56_5%></td><td><%=p.hum56_5%></td>
-			<td> <%#=link_to 'Удалить', humparam_path(p),
+		<tr align="center">
+			<%if p != NIL%>
+			<% gt=re.match(p.htime.to_s)%>
+			<td align="center"> <%=gt[0]%> </td>
+			<td> <%=p.tr90%>%</td>
+			<td><%=p.tr51%>%</td>
+			<td><%=p.tr56_1%>%</td>
+			<td><%=p.tr56_2%>%</td>
+			<td><%=p.tr56_3%>%</td>
+			<td><%=p.tr56_4%>%</td>
+			<td><%=p.tr56_5%>%</td>
+			<td> <%=link_to 'Удалить', [p.shift,p],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+		<%end%>
 		</tr>	
 	<%end%>
 
 </table>
-<p align="center"><%= link_to '<- Новая запись ->', new_humparam_path%></p>
+<br><br><br>
+
+<%= render 'form'%>
+<p align="center"><%= link_to '<- НАЗАД ->', shift_path(@shift)%></p>

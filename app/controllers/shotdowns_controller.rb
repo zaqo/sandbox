@@ -1,7 +1,10 @@
 class ShotdownsController < ApplicationController
 
-	http_basic_authenticate_with name: "master", password: "pasta", only: :destroy 
 
+	def index
+		@shift = Shift.find(params[:shift_id])
+		@shotdowns = Shotdown.all
+	end
 	def show
 		@shift = Shift.find(params[:shift_id])
 		@shotdown= @shift.shotdowns.find(params[:id])

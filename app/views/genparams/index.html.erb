@@ -50,10 +50,10 @@
     		<td > Ф, % </td>
 	</tr>
 	<% re = /(\d+):(\d+)/ %>
-	<% p=@shift.genparams.last%>
+	<% @shift.genparams.each do |p| %>
 	<% if p != NIL%>
-			<% gt=re.match(p.start.to_s)%>
-			<tr align="center">
+		<% gt=re.match(p.start.to_s)%>
+		<tr align="center">
 			<td align="center"> <%=gt[0]%> </td>		
 			<td>
 				<%st=p.sortament.to_i%>
@@ -88,7 +88,7 @@
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
 	<% end%>
 		</tr>
-	  
+	<%end%>	  
 
 </table>
 <br>
