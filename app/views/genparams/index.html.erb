@@ -51,7 +51,7 @@
 	</tr>
 	<% re = /(\d+):(\d+)/ %>
 	<% p=@shift.genparams.last%>
-
+	<% if p != NIL%>
 			<% gt=re.match(p.start.to_s)%>
 			<tr align="center">
 			<td align="center"> <%=gt[0]%> </td>		
@@ -86,6 +86,7 @@
 			<td><%=p.tr565t%></td><td><%=p.tr565f%></td>
 			<td> <%=link_to 'Удалить', [p.shift,p],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+	<% end%>
 		</tr>
 	  
 
@@ -105,6 +106,7 @@
 	    	<th >266</th>
 	</tr>
 	<tr align="center">
+	<% if p != NIL%>
 		<td>
 			<% if (p.fan264.to_i == 1)%>
 				<%= "X" %>
@@ -124,6 +126,7 @@
 				<%= "-" %>
 			<%end%>
 		</td>
+	<%end%>
 	</tr>
 <tr align="center" style="background-color:silver">
  		<th >261</th>
@@ -131,6 +134,7 @@
 	    	<th >263</th>
 	</tr>	
 	<tr align="center">
+	<% if p != NIL%>
 		<td><% if (p.fan261.to_i == 1)%>
 				<%= "X" %>
 			<%else%>
@@ -149,6 +153,7 @@
 				<%= "-" %>
 			<%end%>
 		</td>
+	<%end%>
 	</tr>
 	</table>
 </td>
@@ -161,9 +166,10 @@
 
 	</tr>
 	<tr align="center">
+	<% if p != NIL%>
 		<td><%= p.vel90%></td>
 		<td><%= p.vel51%></td>
-		
+	<%end%>	
 	</tr>
 	</table>
 </td>

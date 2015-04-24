@@ -48,15 +48,17 @@
 	</tr>
 	<tr style="background-color: lightgrey">
 		 <td><strong>Слесарь КИП: </strong>
-		<% kip = @shift.mechanicpsh.to_i%>
-		<% personrec = Person.find(kip)%>
-		<%= personrec.surname+' '+personrec.name%></td>
+			<% kip = @shift.mechanicpsh.to_i%>
+			<% personrec = Person.find(kip)%>
+			<%= personrec.surname+' '+personrec.name%>
+		</td>
 	</tr>
 	<tr style="background-color: lightgrey">
 		 <td><strong>Ассортимент: </strong>
-		<% id = @shift.sortament.to_i%>
-		<% productrec = Product.find(id)%>
-		<%= productrec.name%></td>
+			<% id = @shift.sortament.to_i%>
+			<% productrec = Product.find(id)%>
+			<%= productrec.name%>
+		</td>
 	</tr>
 	<tr style="background-color: lightgrey">
 		<td><strong>Мука: </strong>
@@ -76,7 +78,7 @@
 	    <th colspan="2"></th>
 	</tr>
 	<% i=0 %>
-	<% @shift.shotdowns.each do |shotdown|%>
+	<% @shift.shotdowns.order(:start).each do |shotdown|%>
 		<tr>
 			<% i+=1 %>
 			<td align="center"> <%=i %> </td>
