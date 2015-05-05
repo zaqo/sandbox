@@ -143,6 +143,7 @@
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
 	<tr  style="background-color: silver">
 	    <th rowspan="3" >Время</th>	
+	    <th rowspan="3" >Ассортимент</th>
 	    <th rowspan="2" colspan="2">Вода</th>
 	    <th rowspan="3">Мука, кг/ч</th>
 	    <th rowspan="3">Т воды на замес, град</th>
@@ -186,9 +187,15 @@
 		<td > Т, гр </td>
     		<td > Ф, % </td>
 	</tr>
+		
 	<% @shift.techparams.each do |techparam|%>
+
 		<tr align="center">
+			<%if techparam.ttime== NIL %>
+				techparam.ttime='0'
+			<%end%>
 			<td><%= re.match(techparam.ttime.to_s)%></td>
+			<td><%# PUT THE SORTAMENT HERE%></td>
 			<td> <%=techparam.waterpc%>% </td>
 			<td> <%=techparam.waterl%> </td>
 			<td align="center"><%=techparam.flour%></td>
@@ -212,6 +219,45 @@
 			<td> <%=link_to 'Удалить', [techparam.shift,techparam],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
 		</tr>	
+	<%end%>
+	<%@shift.genparams.each do |p|%>
+	<% if p != NIL%>
+		<% gt=re.match(p.start.to_s)%>
+		<tr align="center" style="background-color: lightgrey">
+			<td align="center"> <%=gt[0]%> </td>		
+			<td>
+				<%st=p.sortament.to_i%>
+				<% if (st!=0) %>
+					<% sort=Product.find(st)%>
+					<%= sort.name%>
+				<%else %>
+					<%= "Not defined!"%>
+				<%end%>
+			</td>
+			<td><%=p.waterpc%>%</td>
+			<td><%=p.waterl%> </td>
+			<td><%=p.flour%></td>
+			<td><%=p.watert%></td>
+			<td><%=p.headt1%></td>
+			<td><%=p.headt2%></td>
+			<td><%=p.cylt1%></td>
+			<td><%=p.cylt2%></td>
+			<td><%=p.rot1%></td>
+			<td><%=p.rot2%></td>
+			<td><%=p.pressbar1%></td>
+			<td><%=p.pressbar2%></td>
+			<td><%=p.tr90t%></td>
+			<td><%=p.tr51t%></td>
+			<td><%=p.tr51f%>%</td>
+			<td><%=p.tr561t%></td><td><%=p.tr561f%>%</td>
+			<td><%=p.tr562t%></td><td><%=p.tr562f%>%</td>
+			<td><%=p.tr563t%></td><td><%=p.tr563f%>%</td>
+			<td><%=p.tr564t%></td><td><%=p.tr564f%>%</td>
+			<td><%=p.tr565t%></td><td><%=p.tr565f%>%</td>
+			<td> <%=link_to 'Удалить', [p.shift,p],
+				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
+	<% end%>
+
 	<%end%>
 
 </table>
