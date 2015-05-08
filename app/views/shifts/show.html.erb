@@ -187,13 +187,15 @@
 		<td > Т, гр </td>
     		<td > Ф, % </td>
 	</tr>
+	<% ind=0 %>
 		
 	<% @shift.techparams.each do |techparam|%>
-
+		
 		<tr align="center">
 			<%if techparam.ttime== NIL %>
 				techparam.ttime='0'
 			<%end%>
+			<%@monitor[ind]={'time'=>re.match(techparam.ttime.to_s),'waterpc'=>techparam.waterpc}%>
 			<td><%= re.match(techparam.ttime.to_s)%></td>
 			<td><%# PUT THE SORTAMENT HERE%></td>
 			<td> <%=techparam.waterpc%>% </td>
@@ -218,11 +220,13 @@
 			<td><%=techparam.temp56_5%></td><td><%=techparam.hum56_5%>%</td>
 			<td> <%=link_to 'Удалить', [techparam.shift,techparam],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
-		</tr>	
+		</tr>
+		<%ind+=1%>	
 	<%end%>
 	<%@shift.genparams.each do |p|%>
 	<% if p != NIL%>
 		<% gt=re.match(p.start.to_s)%>
+	        
 		<tr align="center" style="background-color: lightgrey">
 			<td align="center"> <%=gt[0]%> </td>		
 			<td>
@@ -234,6 +238,7 @@
 					<%= "Not defined!"%>
 				<%end%>
 			</td>
+			<%@monitor[ind]={'time'=>re.match(p.start.to_s),'waterpc'=>p.waterpc}%>
 			<td><%=p.waterpc%>%</td>
 			<td><%=p.waterl%> </td>
 			<td><%=p.flour%></td>
@@ -256,12 +261,17 @@
 			<td><%=p.tr565t%></td><td><%=p.tr565f%>%</td>
 			<td> <%=link_to 'Удалить', [p.shift,p],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
-	<% end%>
+		<%ind+=1%>
+		<% end%>
 
 	<%end%>
 
 </table>
-	
+<%smonitor=@monitor.sort{|a,b| a.to_s<=>b.to_s} %>
+
+<%smonitor.each_with_index do |i,u|%>
+	<%=u%>:-<%=i%><br>
+<%end%>	
 
 <br><br><br><br><br><br>
 <br>
