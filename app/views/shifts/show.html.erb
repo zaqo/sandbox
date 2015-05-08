@@ -267,8 +267,8 @@
 	<%end%>
 
 </table>
-<%smonitor=@monitor.sort{|a,b| a.to_s<=>b.to_s} %>
-
+<%#smonitor=@monitor.sort{|a,b| a.to_s<=>b.to_s} %>
+<%smonitor=@monitor.sort_by{|a| a['time'].to_s} %>
 <%smonitor.each_with_index do |i,u|%>
 	<%=u%>:-<%=i%><br>
 <%end%>	
