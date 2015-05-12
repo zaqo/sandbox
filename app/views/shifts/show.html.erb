@@ -137,7 +137,7 @@
 
 <br><br><br>
 <hr>
-<h2 align="center">***  гюохях реумнкнцхвеяйху оюпюлерпнб гю   ялемс ***</h2>
+<h2 align="center">***   хглемемхе реумнкнцхвеяйху оюпюлерпнб гю ялемс ***</h2>
 <hr>
 <br><br><br>
 <table align="center" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
@@ -195,7 +195,33 @@
 			<%if techparam.ttime== NIL %>
 				techparam.ttime='0'
 			<%end%>
-			<%@monitor[ind]={'time'=>re.match(techparam.ttime.to_s),'waterpc'=>techparam.waterpc}%>
+			<%@monitor[ind]={'time'=>re.match(techparam.ttime.to_s),
+		                         'waterpc'=>techparam.waterpc,
+					 'waterl'=>techparam.waterl, 
+					 'flour'=>techparam.flour,
+					 'tempz'=>techparam.tempz,
+					 'temph1'=>techparam.temph1,
+					 'temph2'=>techparam.temph2,
+					 'tempcyl1'=>techparam.tempcyl1,
+					 'tempcyl2'=>techparam.tempcyl2,
+					 'rotate1'=>techparam.rotate1,
+					 'rotate2'=>techparam.rotate2,
+					 'press1'=>techparam.press1,
+					 'press2'=>techparam.press2,
+					 'temp90'=>techparam.temp90,
+					 'temp51'=>techparam.temp51,
+					 'hum51'=>techparam.hum51,
+					 'temp56_1'=>techparam.temp56_1,
+					 'temp56_2'=>techparam.temp56_2,
+					 'temp56_3'=>techparam.temp56_3,
+					 'temp56_4'=>techparam.temp56_4,
+					 'temp56_5'=>techparam.temp56_5,
+					 'hum56_1'=>techparam.hum56_1,
+					 'hum56_2'=>techparam.hum56_2,
+					 'hum56_3'=>techparam.hum56_3,
+					 'hum56_4'=>techparam.hum56_4,
+					 'hum56_5'=>techparam.hum56_5
+			}%>
 			<td><%= re.match(techparam.ttime.to_s)%></td>
 			<td><%# PUT THE SORTAMENT HERE%></td>
 			<td> <%=techparam.waterpc%>% </td>
@@ -238,7 +264,34 @@
 					<%= "Not defined!"%>
 				<%end%>
 			</td>
-			<%@monitor[ind]={'time'=>re.match(p.start.to_s),'waterpc'=>p.waterpc}%>
+			<%@monitor[ind]={'time'=>re.match(p.start.to_s),
+		    			 'sortament'=>sort.name,
+					 'waterpc'=>p.waterpc,
+					  'waterl'=>p.waterl, 
+					 'flour'=>p.flour,
+					 'tempz'=>p.watert,
+					 'temph1'=>p.headt1,
+					 'temph2'=>p.headt2,
+					 'tempcyl1'=>p.cylt1,
+					 'tempcyl2'=>p.cylt2,
+					 'rotate1'=>p.rot1,
+					 'rotate2'=>p.rot2,
+					 'press1'=>p.pressbar1,
+					 'press2'=>p.pressbar2,
+					 'temp90'=>p.tr90t,
+					 'temp51'=>p.tr51t,
+					 'hum51'=>p.tr51f,
+					 'temp56_1'=>p.tr561t,
+					 'temp56_2'=>p.tr562t,
+					 'temp56_3'=>p.tr563t,
+					 'temp56_4'=>p.tr564t,
+					 'temp56_5'=>p.tr565t,
+					 'hum56_1'=>p.tr561f,
+					 'hum56_2'=>p.tr562f,
+					 'hum56_3'=>p.tr563f,
+					 'hum56_4'=>p.tr564f,
+					 'hum56_5'=>p.tr565f
+					}%>
 			<td><%=p.waterpc%>%</td>
 			<td><%=p.waterl%> </td>
 			<td><%=p.flour%></td>
@@ -266,12 +319,43 @@
 
 	<%end%>
 
+
+	<%#smonitor=@monitor.sort{|a,b| a.to_s<=>b.to_s} %>
+	<%smonitor=@monitor.sort_by{|a| a['time'].to_s} %>
+	<%smonitor.each_with_index do |el,i|%>
+		<%if el['sortament']!=NIL%>
+			<tr align="center" style="background-color: lightgrey">
+		<%else%>
+			<tr align="center" style="">			
+		<%end%>
+		
+			<td align="center"> <%=el['time']%> </td>
+			<td><%=el['sortament']%></td>		
+			<td><%=el['waterpc']%>%</td>
+			<td><%=el['waterl']%> </td>
+			<td><%=el['flour']%></td>
+			<td><%=el['tempz']%></td>
+			<td><%=el['temph1']%></td>
+			<td><%=el['temph2']%></td>
+			<td><%=el['tempcyl1']%></td>
+			<td><%=el['tempcyl2']%></td>
+			<td><%=el['rotate1']%></td>
+			<td><%=el['rotate2']%></td>
+			<td><%=el['press1']%></td>
+			<td><%=el['press2']%></td>
+			<td><%=el['temp90']%></td>
+			<td><%=el['temp51']%></td>
+			<td><%=el['hum51']%>%</td>
+			<td><%=el['temp56_1']%></td><td><%=el['hum56_1']%>%</td>
+			<td><%=el['temp56_2']%></td><td><%=el['hum56_1']%>%</td>
+			<td><%=el['temp56_3']%></td><td><%=el['hum56_1']%>%</td>
+			<td><%=el['temp56_4']%></td><td><%=el['hum56_1']%>%</td>
+			<td><%=el['temp56_5']%></td><td><%=el['hum56_1']%>%</td>
+
+		</tr>
+		<%#=u%><%#=i%>
+	<%end%>	
 </table>
-<%#smonitor=@monitor.sort{|a,b| a.to_s<=>b.to_s} %>
-<%smonitor=@monitor.sort_by{|a| a['time'].to_s} %>
-<%smonitor.each_with_index do |i,u|%>
-	<%=u%>:-<%=i%><br>
-<%end%>	
 
 <br><br><br><br><br><br>
 <br>
