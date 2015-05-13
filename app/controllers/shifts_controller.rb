@@ -1,7 +1,5 @@
 class ShiftsController < ApplicationController
 
-	http_basic_authenticate_with name: "master", password: "pasta", except: [:index,:show] 
-
 	def index
 		@shifts=Shift.all
 	end
