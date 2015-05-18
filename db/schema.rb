@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514155035) do
+ActiveRecord::Schema.define(version: 20150514165623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,32 +20,6 @@ ActiveRecord::Schema.define(version: 20150514155035) do
     t.time     "start"
     t.time     "end"
     t.string   "sortament"
-    t.integer  "vel90"
-    t.integer  "vel51"
-    t.integer  "waterpc"
-    t.integer  "waterl"
-    t.integer  "flour"
-    t.integer  "watert"
-    t.integer  "headt1"
-    t.integer  "headt2"
-    t.integer  "cylt1"
-    t.integer  "cylt2"
-    t.integer  "rot1"
-    t.integer  "rot2"
-    t.integer  "pressbar1"
-    t.integer  "pressbar2"
-    t.integer  "tr51t"
-    t.integer  "tr51f"
-    t.integer  "tr561t"
-    t.integer  "tr561f"
-    t.integer  "tr562t"
-    t.integer  "tr562f"
-    t.integer  "tr563t"
-    t.integer  "tr563f"
-    t.integer  "tr564t"
-    t.integer  "tr564f"
-    t.integer  "tr565t"
-    t.integer  "tr565f"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "shift_id"
@@ -56,6 +30,32 @@ ActiveRecord::Schema.define(version: 20150514155035) do
     t.string   "fan264"
     t.string   "fan265"
     t.string   "fan266"
+    t.decimal  "vel90",      precision: 5, scale: 2
+    t.decimal  "vel51",      precision: 5, scale: 2
+    t.decimal  "waterpc",    precision: 5, scale: 2
+    t.decimal  "waterl",     precision: 5, scale: 2
+    t.decimal  "flour",      precision: 5, scale: 2
+    t.decimal  "watert",     precision: 5, scale: 2
+    t.decimal  "headt1",     precision: 5, scale: 2
+    t.decimal  "headt2",     precision: 5, scale: 2
+    t.decimal  "cylt1",      precision: 5, scale: 2
+    t.decimal  "cylt2",      precision: 5, scale: 2
+    t.decimal  "rot1",       precision: 5, scale: 2
+    t.decimal  "rot2",       precision: 5, scale: 2
+    t.decimal  "pressbar1",  precision: 5, scale: 2
+    t.decimal  "pressbar2",  precision: 5, scale: 2
+    t.decimal  "tr51t",      precision: 5, scale: 2
+    t.decimal  "tr51f",      precision: 5, scale: 2
+    t.decimal  "tr561t",     precision: 5, scale: 2
+    t.decimal  "tr561f",     precision: 5, scale: 2
+    t.decimal  "tr562t",     precision: 5, scale: 2
+    t.decimal  "tr562f",     precision: 5, scale: 2
+    t.decimal  "tr563t",     precision: 5, scale: 2
+    t.decimal  "tr563f",     precision: 5, scale: 2
+    t.decimal  "tr564t",     precision: 5, scale: 2
+    t.decimal  "tr564f",     precision: 5, scale: 2
+    t.decimal  "tr565t",     precision: 5, scale: 2
+    t.decimal  "tr565f",     precision: 5, scale: 2
   end
 
   add_index "genparams", ["shift_id"], name: "index_genparams_on_shift_id", using: :btree
