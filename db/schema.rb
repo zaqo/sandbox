@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421170849) do
+ActiveRecord::Schema.define(version: 20150514155035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,16 +62,16 @@ ActiveRecord::Schema.define(version: 20150421170849) do
 
   create_table "humparams", force: true do |t|
     t.time     "htime"
-    t.integer  "tr90"
-    t.integer  "tr51"
-    t.integer  "tr56_1"
-    t.integer  "tr56_2"
-    t.integer  "tr56_3"
-    t.integer  "tr56_4"
-    t.integer  "tr56_5"
     t.integer  "shift_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "tr90",       precision: 5, scale: 2
+    t.decimal  "tr51",       precision: 5, scale: 2
+    t.decimal  "tr56_1",     precision: 5, scale: 2
+    t.decimal  "tr56_2",     precision: 5, scale: 2
+    t.decimal  "tr56_3",     precision: 5, scale: 2
+    t.decimal  "tr56_4",     precision: 5, scale: 2
+    t.decimal  "tr56_5",     precision: 5, scale: 2
   end
 
   add_index "humparams", ["shift_id"], name: "index_humparams_on_shift_id", using: :btree
