@@ -28,7 +28,14 @@
 	</tr>
 	<tr>
 		<td>	
-			<%= f.label "Начальник" %><br>
+			<%= f.label "Дата" %><br>
+			<%= f.date_select(:date)%>
+		</td>
+	</tr>
+
+	<tr>
+		<td>	
+			<%= f.label "Начальник смены" %><br>
 			<%# men_array = Person.all.map{|p| [p.surname,p.id]} %>
 			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
 			<%= f.collection_select(:manager, Person.all,:id,:surname)%>
@@ -37,55 +44,50 @@
 	</tr>
 	<tr>
 		<td>	
-			<%= f.label "Оператор" %><br>
+			<%= f.label "Оператор №1" %><br>
 			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
 			<%= f.collection_select(:operator, Person.all,:id,:surname)%>
 		</td>
 	</tr>
 	<tr>
 		<td>	
-			<%= f.label " Слесарь" %><br>
+			<%= f.label "Оператор №2" %><br>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:operator1, Person.all,:id,:surname)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label "Оператор №3" %><br>
+			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
+			<%= f.collection_select(:operator2, Person.all,:id,:surname)%>
+		</td>
+	</tr>
+	<tr>
+		<td>	
+			<%= f.label " Дежурный слесарь" %><br>
 			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
 			<%= f.collection_select(:mechanic, Person.all,:id,:surname)%>
 		</td>
 	</tr>
 	<tr>
 		<td>	
-			<%= f.label "Слесарь ПСХ" %><br>
+			<%= f.label "Дежурный слесарь ПСХ" %><br>
 			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
 			<%= f.collection_select(:mechanicpsh, Person.all,:id,:surname)%>
 		</td>
 	</tr>
 	<tr>
 		<td>	
-			<%= f.label "Слесарь КИПа" %><br>
+			<%= f.label "Дежурный слесарь КИП" %><br>
 			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
 			<%= f.collection_select(:kip, Person.all,:id,:surname)%>
 		</td>
 	</tr>
 	<tr>
-		<td>	
-			<%= f.label "Технолог" %><br>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:technolog, Person.all,:id,:surname)%>
-		</td>
-	</tr>
-	<tr>
-		<td>	
-			<%= f.label "Ассортимент" %><br>
-			<% options_from_collection_for_select(Product.all,:id,:name)%>	
-			<%= f.collection_select(:sortament, Product.all,:id,:name)%>
-		</td>
-	</tr>
-	<tr>
-		<td>	
-			<%= f.label "Мука" %><br>
-			<%= f.select(:flour,[['Крупка',0],['ХП',1]])%>
-		</td>
-	</tr>
-	<tr>
 		<td align="center">
 			<%= submit_tag("Ввод") %>
+			
 		</td>
 	
 	</tr>

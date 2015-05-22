@@ -10,7 +10,5 @@ class Shift < ActiveRecord::Base
 	validates :mechanic, :presence=>true
 	validates :mechanicpsh, :presence=>true
 	validates :kip, :presence=>true
-	validates :technolog, :presence=>true
-	validates :sortament, :presence=>true
-	validates :flour, :presence=>true
+
 end

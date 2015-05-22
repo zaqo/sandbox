@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514165623) do
+ActiveRecord::Schema.define(version: 20150522185018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20150514165623) do
     t.decimal  "vel51",      precision: 5, scale: 2
     t.decimal  "waterpc",    precision: 5, scale: 2
     t.decimal  "waterl",     precision: 5, scale: 2
-    t.decimal  "flour",      precision: 5, scale: 2
     t.decimal  "watert",     precision: 5, scale: 2
     t.decimal  "headt1",     precision: 5, scale: 2
     t.decimal  "headt2",     precision: 5, scale: 2
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150514165623) do
     t.decimal  "tr564f",     precision: 5, scale: 2
     t.decimal  "tr565t",     precision: 5, scale: 2
     t.decimal  "tr565f",     precision: 5, scale: 2
+    t.decimal  "flour",      precision: 6, scale: 2
   end
 
   add_index "genparams", ["shift_id"], name: "index_genparams_on_shift_id", using: :btree
@@ -98,18 +98,14 @@ ActiveRecord::Schema.define(version: 20150514165623) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "time"
-    t.integer  "person_id"
     t.string   "operator"
     t.string   "mechanic"
     t.string   "kip"
-    t.string   "technolog"
-    t.string   "sortament"
-    t.string   "flour"
-    t.string   "supplier"
     t.string   "mechanicpsh"
+    t.string   "operator1"
+    t.string   "operator2"
+    t.datetime "date"
   end
-
-  add_index "shifts", ["person_id"], name: "index_shifts_on_person_id", using: :btree
 
   create_table "shotdowns", force: true do |t|
     t.time     "start"
@@ -132,35 +128,35 @@ ActiveRecord::Schema.define(version: 20150514165623) do
   end
 
   create_table "techparams", force: true do |t|
-    t.integer  "waterpc"
-    t.integer  "waterl"
-    t.integer  "flour"
-    t.integer  "tempz"
-    t.integer  "temph1"
-    t.integer  "temph2"
-    t.integer  "tempcyl1"
-    t.integer  "tempcyl2"
-    t.integer  "rotate1"
-    t.integer  "rotate2"
-    t.integer  "press1"
-    t.integer  "press2"
-    t.integer  "temp90"
-    t.integer  "temp51"
-    t.integer  "hum51"
-    t.integer  "temp56_1"
-    t.integer  "hum56_1"
-    t.integer  "temp56_2"
-    t.integer  "hum56_2"
-    t.integer  "temp56_3"
-    t.integer  "hum56_3"
-    t.integer  "temp56_4"
-    t.integer  "hum56_4"
-    t.integer  "temp56_5"
-    t.integer  "hum56_5"
     t.integer  "shift_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.time     "ttime"
+    t.decimal  "waterpc",    precision: 5, scale: 2
+    t.decimal  "waterl",     precision: 5, scale: 2
+    t.decimal  "flour",      precision: 6, scale: 2
+    t.decimal  "tempz",      precision: 5, scale: 2
+    t.decimal  "temph1",     precision: 5, scale: 2
+    t.decimal  "temph2",     precision: 5, scale: 2
+    t.decimal  "tempcyl1",   precision: 5, scale: 2
+    t.decimal  "tempcyl2",   precision: 5, scale: 2
+    t.decimal  "rotate1",    precision: 5, scale: 2
+    t.decimal  "rotate2",    precision: 5, scale: 2
+    t.decimal  "press1",     precision: 5, scale: 2
+    t.decimal  "press2",     precision: 5, scale: 2
+    t.decimal  "temp90",     precision: 5, scale: 2
+    t.decimal  "temp51",     precision: 5, scale: 2
+    t.decimal  "hum51",      precision: 5, scale: 2
+    t.decimal  "temp56_1",   precision: 5, scale: 2
+    t.decimal  "hum56_1",    precision: 5, scale: 2
+    t.decimal  "temp56_2",   precision: 5, scale: 2
+    t.decimal  "hum56_2",    precision: 5, scale: 2
+    t.decimal  "temp56_3",   precision: 5, scale: 2
+    t.decimal  "hum56_3",    precision: 5, scale: 2
+    t.decimal  "temp56_4",   precision: 5, scale: 2
+    t.decimal  "hum56_4",    precision: 5, scale: 2
+    t.decimal  "temp56_5",   precision: 5, scale: 2
+    t.decimal  "hum56_5",    precision: 5, scale: 2
   end
 
   add_index "techparams", ["shift_id"], name: "index_techparams_on_shift_id", using: :btree

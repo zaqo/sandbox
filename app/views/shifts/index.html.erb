@@ -12,7 +12,11 @@
 
 	<% @shifts.each do |shift|%>
 		<tr>
-		        <td align="center"> <%=shift.created_at.strftime("%d %B")%> </td>
+			<%s_date=shift.date%>
+			<% if s_date != nil%>
+				<%s_date=s_date.strftime("%d/%m")%>
+			<%end%>
+			<td align="center"> <%=s_date%> </td>
 			<% shift_times = {'0'=>'8:00','1'=>'20:00'}%>
 			<td align="center"> <%= shift_times[shift.time] %> </td>
 			<td> <%=Person.find(shift.manager.to_i).surname%> </td>
