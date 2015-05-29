@@ -32,56 +32,68 @@
 			<%= f.date_select(:date)%>
 		</td>
 	</tr>
-
 	<tr>
 		<td>	
 			<%= f.label "Начальник смены" %><br>
-			<%# men_array = Person.all.map{|p| [p.surname,p.id]} %>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:manager, Person.all,:id,:surname)%>
-			<%# :person_id = men_array.index(:manager) %>
+			<% men=[];op=[];sl=[];slpsh=[];slkip=[]%>
+			<% mes='Выбрать'%>
+			<%op[0]=mes;sl[0]=mes;slpsh[0]=mes;slkip[0]=mes%>
+			<% index=0;opindex=1;slindex=1;pshindex=1;kipindex=1;%>
+			
+			<%Person.all.each do |el|%>
+				<%if el.prof=='1'%>
+					<%men[index]=el.surname%>
+					<% index += 1 %>	
+				<%elsif el.prof=='2'%>
+					<%op[opindex]=el.surname%>
+					<%opindex+=1%>			
+				<%elsif el.prof=='3'%>
+					<%sl[slindex]=el.surname%>
+					<%slindex+=1%>
+				<%elsif el.prof=='4'%>
+					<%slpsh[pshindex]=el.surname%>
+					<%pshindex+=1%>
+				<%elsif el.prof=='5'%>
+					<%slkip[kipindex]=el.surname%>
+					<%kipindex+=1%>
+				<%end%>
+
+			<%end%>	
+
+			<%= f.select(:manager,options_for_select(men)) %>
 		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label "Оператор №1" %><br>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:operator, Person.all,:id,:surname)%>
+			<%= f.select(:operator,options_for_select(op,2))%>
 		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label "Оператор №2" %><br>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:operator1, Person.all,:id,:surname)%>
-		</td>
+			<%= f.select(:operator, options_for_select(op))%>		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label "Оператор №3" %><br>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:operator2, Person.all,:id,:surname)%>
-		</td>
+			<%= f.select(:operator, options_for_select(op))%>		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label " Дежурный слесарь" %><br>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:mechanic, Person.all,:id,:surname)%>
-		</td>
+			<%= f.select(:mechanic, options_for_select(sl))%>		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label "Дежурный слесарь ПСХ" %><br>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:mechanicpsh, Person.all,:id,:surname)%>
+			<%= f.select(:mechanicpsh, options_for_select(slpsh))%>
 		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label "Дежурный слесарь КИП" %><br>
-			<% options_from_collection_for_select(Person.all,:id,:surname)%>	
-			<%= f.collection_select(:kip, Person.all,:id,:surname)%>
+			<%= f.select(:kip, options_for_select(slkip))%>
 		</td>
 	</tr>
 	<tr>

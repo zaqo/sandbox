@@ -197,7 +197,7 @@
 		
 		
 			<%if techparam.ttime== NIL %>
-				techparam.ttime='0'
+				<% techparam.ttime='0' %>
 			<%end%>
 			<%@monitor[ind]={'time'=>re.match(techparam.ttime.to_s),
 		                         'waterpc'=>techparam.waterpc,
