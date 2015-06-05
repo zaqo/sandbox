@@ -5,10 +5,8 @@ class Shift < ActiveRecord::Base
   has_many :people
   has_many :genparams, dependent: :destroy
 
-	validates :manager, :presence=>true
-	validates :operator, :presence=>true
-	validates :mechanic, :presence=>true
-	validates :mechanicpsh, :presence=>true
-	validates :kip, :presence=>true
+
+	validates_format_of :manager,:operator,:mechanic,:mechanicpsh,:kip, :without=>/[0+]/
+validates_uniqueness_of [:date,:time]
 
 end

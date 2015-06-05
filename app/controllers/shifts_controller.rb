@@ -11,7 +11,7 @@ class ShiftsController < ApplicationController
 	
 	def new
 		@shift = Shift.new
-		@profi = []
+			
 	end
 
 	def edit

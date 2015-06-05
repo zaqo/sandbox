@@ -8,7 +8,7 @@
 	text-shadow :2px 2px 3px #444;
 }
 </style><%# Стиль для заголовков таблиц (с расплывчатой тенью)%>
-
+<% empty="ПОКА НЕТ ЗАПИСЕЙ!"%>
 <table align="left" border = "1" cellpadding="5" style="border-collapse: collapse; border: 1px solid black;">
 	<tr  style="background-color: pink">
 		<th > Линия PAVAN 2 </th>
@@ -38,17 +38,25 @@
 		<% personrec = Person.find(operator)%>
 		<%= personrec.surname+' '+personrec.name%></td>
 	</tr>
-	<tr style="background-color: lightgrey">
-	 <td><strong>Оператор №2: </strong>
-		<% operator = @shift.operator1.to_i%>
-		<% personrec = Person.find(operator)%>
+	<% operator = @shift.operator1.to_i%>
+
+	<%if !operator%>
+	
+		<tr style="background-color: lightgrey">
+		
+		<td><strong>Оператор №2: </strong>
+			<% personrec = Person.find(operator)%>
 		<%= personrec.surname+' '+personrec.name%></td>
-	</tr><tr style="background-color: lightgrey">
-	 <td><strong>Оператор №3: </strong>
+		</tr>
+	<%end%>
 		<% operator = @shift.operator2.to_i%>
+	<%if !operator%>
+		<tr style="background-color: lightgrey">
+	 	<td><strong>Оператор №3: </strong>
 		<% personrec = Person.find(operator)%>
 		<%= personrec.surname+' '+personrec.name%></td>
-	</tr>
+		</tr>
+	<%end%>
 	<tr style="background-color: lightgrey">
 		 <td><strong>Дежурный Слесарь: </strong>
 		<% mechanic = @shift.mechanic.to_i%>
@@ -81,8 +89,12 @@
 	    <th>Причина:</th>
 	    <th colspan="2"></th>
 	</tr>
-	<% i=0 %>
-	<% @shift.shotdowns.order(:start).each do |shotdown|%>
+	<%sdowns=@shift.shotdowns.all%>
+	<%if sdowns.size==0%>
+		<tr><td align="center" colspan="6"><em><%=empty%></em></td></tr>
+	<%else%>	
+		<% i=0 %>
+		<% sdowns.order(:start).each do |shotdown|%>
 		<tr>
 			<% i+=1 %>
 			<td align="center"> <%=i %> </td>
@@ -95,8 +107,9 @@
 			<td> <%=link_to 'Просмотр', [shotdown.shift,shotdown]%> </td>
 			<td> <%=link_to 'Удалить', [shotdown.shift,shotdown],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
-		</tr>	
-	<%end%>
+		</tr>
+	<%end%>	
+<%end%>
 
 </table>
 <br><br>
@@ -120,8 +133,12 @@
 		<td > 5 яр </td>
 		
 	</tr>
-	<% @shift.humparams.each do |humparam|%>
-	<tr align="center">
+	<%humparams=@shift.humparams.all%>
+	<%if humparams.size==0%>
+		<tr><td align="center" colspan="9"><em><%=empty%></em></td></tr>
+	<%else%>
+		<% humparams.each do |humparam|%>
+		<tr align="center">
 			<td align="center"> <%=re.match(humparam.htime.to_s)%> </td>
 			<td> <%=humparam.tr90%>%</td>
 			<td><%=humparam.tr51%>%</td>
@@ -133,7 +150,8 @@
 			
 			<td> <%=link_to 'Удалить', [humparam.shift,humparam],
 				method: :delete, data:{confirm: 'Подтвердить?'} %> </td>
-	</tr>	
+		</tr>	
+	<%end%>
 	<%end%>
 </table>
 
@@ -191,11 +209,13 @@
 		<td > Т, гр </td>
     		<td > Ф, % </td>
 	</tr>
-	<% ind=0 %>
-		
-	<% @shift.techparams.each do |techparam|%>
-		
-		
+	<%techparams=@shift.techparams.all%>
+	<%genparams=@shift.genparams.all%>
+	<%if (techparams.size==0)&&(genparams.size==0)%>
+		<tr><td align="center" colspan="27"><em><%=empty%></em></td></tr>
+	<%else%>	
+		<% ind=0 %>	
+		<% techparams.each do |techparam|%>
 			<%if techparam.ttime== NIL %>
 				<% techparam.ttime='0' %>
 			<%end%>
@@ -229,13 +249,10 @@
 
 			<%ind+=1%>	
 	<%end%>
-	<%@shift.genparams.each do |p|%>
+	<%genparams.each do |p|%>
 	<% if p != NIL%>
-		<% gt=re.match(p.start.to_s)%>
-	        
+		<% gt=re.match(p.start.to_s)%>      
 		<tr align="center" style="background-color: lightgrey">
-
-			
 				<%st=p.sortament.to_i%>
 				<% if (st!=0) %>
 					<% sort=Product.find(st)%>
@@ -274,12 +291,10 @@
 					}%>
 
 		<%ind+=1%>
-		<% end%>
+	<% end%>
 
 	<%end%>
 
-
-	<%#smonitor=@monitor.sort{|a,b| a.to_s<=>b.to_s} %>
 	<%smonitor=@monitor.sort_by{|a| a['time'].to_s} %>
 	<%smonitor.each_with_index do |el,i|%>
 		<%if el['sortament']!=NIL%>
@@ -312,8 +327,8 @@
 			<td><%=el['temp56_5']%></td><td><%=el['hum56_1']%>%</td>
 
 		</tr>
-		<%#=u%><%#=i%>
 	<%end%>	
+<%end%>
 </table>
 
 <br><br><br><br><br><br>

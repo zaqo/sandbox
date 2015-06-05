@@ -36,25 +36,25 @@
 		<td>	
 			<%= f.label "Начальник смены" %><br>
 			<% men=[];op=[];sl=[];slpsh=[];slkip=[]%>
-			<% mes='Выбрать'%>
-			<%op[0]=mes;sl[0]=mes;slpsh[0]=mes;slkip[0]=mes%>
-			<% index=0;opindex=1;slindex=1;pshindex=1;kipindex=1;%>
+			<% mes=['Выбрать',0]%>
+			<%men[0]=mes;op[0]=mes;sl[0]=mes;slpsh[0]=mes;slkip[0]=mes%>
+			<% index=1;opindex=1;slindex=1;pshindex=1;kipindex=1;%>
 			
 			<%Person.all.each do |el|%>
 				<%if el.prof=='1'%>
-					<%men[index]=el.surname%>
+					<%men[index]=[el.surname,el.id]%>
 					<% index += 1 %>	
 				<%elsif el.prof=='2'%>
-					<%op[opindex]=el.surname%>
+					<%op[opindex]=[el.surname,el.id]%>
 					<%opindex+=1%>			
 				<%elsif el.prof=='3'%>
-					<%sl[slindex]=el.surname%>
+					<%sl[slindex]=[el.surname,el.id]%>
 					<%slindex+=1%>
 				<%elsif el.prof=='4'%>
-					<%slpsh[pshindex]=el.surname%>
+					<%slpsh[pshindex]=[el.surname,el.id]%>
 					<%pshindex+=1%>
 				<%elsif el.prof=='5'%>
-					<%slkip[kipindex]=el.surname%>
+					<%slkip[kipindex]=[el.surname,el.id]%>
 					<%kipindex+=1%>
 				<%end%>
 
@@ -66,18 +66,18 @@
 	<tr>
 		<td>	
 			<%= f.label "Оператор №1" %><br>
-			<%= f.select(:operator,options_for_select(op,2))%>
+			<%= f.select(:operator,options_for_select(op))%>
 		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label "Оператор №2" %><br>
-			<%= f.select(:operator, options_for_select(op))%>		</td>
+			<%= f.select(:operator1, options_for_select(op))%>		</td>
 	</tr>
 	<tr>
 		<td>	
 			<%= f.label "Оператор №3" %><br>
-			<%= f.select(:operator, options_for_select(op))%>		</td>
+			<%= f.select(:operator2, options_for_select(op))%>		</td>
 	</tr>
 	<tr>
 		<td>	
