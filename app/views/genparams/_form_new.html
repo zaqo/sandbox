@@ -3,6 +3,7 @@
 	<tr align="center" style="background-color:silver">
 	    <th rowspan="2" >Время</th>
 	    <th rowspan="2">Ассортимент</th>
+	    <th rowspan="2">Поставщик</th>
             <th rowspan="2">Мука, кг/ч</th>	
 	    <th rowspan="1" colspan="2">Скорость движения</th>    
 	 </tr>
@@ -32,6 +33,12 @@
 		
 			<% options_from_collection_for_select(Product.all,:id,:name)%>	
 			<%= f.collection_select(:sortament, Product.all,:id,:name)%>
+		</td>
+		<td>	
+		
+			<% options_from_collection_for_select(Supplier.all,:id,:name)%>	
+			<%= f.collection_select(:supplier_id, Supplier.all,:id,:name)%>
+		
 		</td>
 		<td>
 			<%= f.number_field( :flour, in: 500.0..2000.0, step: 100.0)%>

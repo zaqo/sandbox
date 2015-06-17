@@ -1,7 +1,9 @@
+#encoding: CP1251
 class PeopleController < ApplicationController
 
 	http_basic_authenticate_with name: "master", password: "pasta", except: [:index,:show] 
 
+	
 	def index
 		@people=Person.all
 	end
@@ -11,6 +13,7 @@ class PeopleController < ApplicationController
 	end
 	
 	def new
+	
 		@person = Person.new
 	end
 

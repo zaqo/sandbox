@@ -9,7 +9,9 @@
   </p>
  <p>
 	<strong>Должность: </strong>
-	<%= @person.prof.to_i %>
+	<%prof=[['Начальник смены',1],['Оператор',2],['Слесарь',3],['Слесарь ПСХ',4],['Инженер КИП',5]]%>
+	<%index= @person.prof.to_i - 1%>
+	<%= prof[0][index] %>
   </p>
 		
 	<%=link_to '<-Список сотрудников->', people_path%> | <%=link_to '<-Изменить->', edit_person_path(@person)%>

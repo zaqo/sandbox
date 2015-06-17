@@ -6,7 +6,7 @@
 	<% if @shift.errors.any? %>
 		<div id="error_explanation">
 		  <h2>
-		   <%= pluralize(@shift.errors.count,"error")%> необходимо устранить:
+		   <%= @shift.errors.count%> ошибок необходимо устранить:
 		  </h2>
 			<ul>
 				<% @shift.errors.full_messages.each do |msg|%>

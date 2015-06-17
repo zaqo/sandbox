@@ -22,7 +22,7 @@ Rails.application.routes.draw do
      resources :people
      resources :shotdowntypes
      resources :products 
-
+     resources :suppliers
   # Example resource route with options:
   #   resources :products do
   #     member do

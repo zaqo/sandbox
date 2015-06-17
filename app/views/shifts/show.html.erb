@@ -16,9 +16,10 @@
     	<tr  style="background-color: grey" >
 		<% re = /(\d+):(\d+)/ %>
 		<% rt = /(\d+)-(\d+)-(\d+)/ %>
-		<% t= Time.now %>
+		<% t= @shift.date %>
 		<% d= rt.match(t.to_s) %>
-		<th style="color: white"><%=d%></th>
+		<% da=t.to_s.split(/-/)%>
+		<th style="color: white"><%="-"+da[1]+"-"+da[0]%></th>
 	    
 	</tr>
 	<tr style="background-color: lightgrey">
@@ -74,6 +75,18 @@
 			<% kip = @shift.mechanicpsh.to_i%>
 			<% personrec = Person.find(kip)%>
 			<%= personrec.surname+' '+personrec.name%>
+		</td>
+	</tr>
+	<tr style="background-color: lightgrey">
+		 <td><strong>Ассортимент: </strong>
+			<%@@sortament=@shift.genparams.last.sortament%>
+			<%=Product.find(@@sortament.to_i).name%>
+		</td>
+	</tr>
+	<tr style="background-color: lightgrey">
+		 <td><strong>Поставщик: </strong>
+			<%@@supplier=@shift.genparams.last.supplier_id%>
+			<%=Supplier.find(@@supplier.to_i).name%>
 		</td>
 	</tr>
 

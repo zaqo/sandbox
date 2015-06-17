@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522185018) do
+ActiveRecord::Schema.define(version: 20150616155651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,32 +30,33 @@ ActiveRecord::Schema.define(version: 20150522185018) do
     t.string   "fan264"
     t.string   "fan265"
     t.string   "fan266"
-    t.decimal  "vel90",      precision: 5, scale: 2
-    t.decimal  "vel51",      precision: 5, scale: 2
-    t.decimal  "waterpc",    precision: 5, scale: 2
-    t.decimal  "waterl",     precision: 5, scale: 2
-    t.decimal  "watert",     precision: 5, scale: 2
-    t.decimal  "headt1",     precision: 5, scale: 2
-    t.decimal  "headt2",     precision: 5, scale: 2
-    t.decimal  "cylt1",      precision: 5, scale: 2
-    t.decimal  "cylt2",      precision: 5, scale: 2
-    t.decimal  "rot1",       precision: 5, scale: 2
-    t.decimal  "rot2",       precision: 5, scale: 2
-    t.decimal  "pressbar1",  precision: 5, scale: 2
-    t.decimal  "pressbar2",  precision: 5, scale: 2
-    t.decimal  "tr51t",      precision: 5, scale: 2
-    t.decimal  "tr51f",      precision: 5, scale: 2
-    t.decimal  "tr561t",     precision: 5, scale: 2
-    t.decimal  "tr561f",     precision: 5, scale: 2
-    t.decimal  "tr562t",     precision: 5, scale: 2
-    t.decimal  "tr562f",     precision: 5, scale: 2
-    t.decimal  "tr563t",     precision: 5, scale: 2
-    t.decimal  "tr563f",     precision: 5, scale: 2
-    t.decimal  "tr564t",     precision: 5, scale: 2
-    t.decimal  "tr564f",     precision: 5, scale: 2
-    t.decimal  "tr565t",     precision: 5, scale: 2
-    t.decimal  "tr565f",     precision: 5, scale: 2
-    t.decimal  "flour",      precision: 6, scale: 2
+    t.decimal  "vel90",       precision: 5, scale: 2
+    t.decimal  "vel51",       precision: 5, scale: 2
+    t.decimal  "waterpc",     precision: 5, scale: 2
+    t.decimal  "waterl",      precision: 5, scale: 2
+    t.decimal  "watert",      precision: 5, scale: 2
+    t.decimal  "headt1",      precision: 5, scale: 2
+    t.decimal  "headt2",      precision: 5, scale: 2
+    t.decimal  "cylt1",       precision: 5, scale: 2
+    t.decimal  "cylt2",       precision: 5, scale: 2
+    t.decimal  "rot1",        precision: 5, scale: 2
+    t.decimal  "rot2",        precision: 5, scale: 2
+    t.decimal  "pressbar1",   precision: 5, scale: 2
+    t.decimal  "pressbar2",   precision: 5, scale: 2
+    t.decimal  "tr51t",       precision: 5, scale: 2
+    t.decimal  "tr51f",       precision: 5, scale: 2
+    t.decimal  "tr561t",      precision: 5, scale: 2
+    t.decimal  "tr561f",      precision: 5, scale: 2
+    t.decimal  "tr562t",      precision: 5, scale: 2
+    t.decimal  "tr562f",      precision: 5, scale: 2
+    t.decimal  "tr563t",      precision: 5, scale: 2
+    t.decimal  "tr563f",      precision: 5, scale: 2
+    t.decimal  "tr564t",      precision: 5, scale: 2
+    t.decimal  "tr564f",      precision: 5, scale: 2
+    t.decimal  "tr565t",      precision: 5, scale: 2
+    t.decimal  "tr565f",      precision: 5, scale: 2
+    t.decimal  "flour",       precision: 6, scale: 2
+    t.string   "supplier_id"
   end
 
   add_index "genparams", ["shift_id"], name: "index_genparams_on_shift_id", using: :btree
@@ -123,6 +124,16 @@ ActiveRecord::Schema.define(version: 20150522185018) do
   create_table "shotdowntypes", force: true do |t|
     t.string   "location"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suppliers", force: true do |t|
+    t.string   "name"
+    t.integer  "structure"
+    t.string   "inn"
+    t.string   "address"
+    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

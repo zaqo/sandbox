@@ -1,5 +1,8 @@
 class ShiftsController < ApplicationController
 
+		@@sortament='some'
+		@@supplier='some'
+
 	def index
 		@shifts=Shift.all
 	end
@@ -10,8 +13,7 @@ class ShiftsController < ApplicationController
 	end
 	
 	def new
-		@shift = Shift.new
-			
+		@shift = Shift.new	
 	end
 
 	def edit

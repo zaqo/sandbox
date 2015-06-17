@@ -1,0 +1,24 @@
+#encoding: CP1251
+<p>
+	<strong>Название: </strong>
+	<%= @supplier.name%>
+  </p>
+  <p><strong>Организационная форма:</strong>
+  	<%org=[['OOO',1],['ЗАО',2],['ОАО',3],['ИП',4],['Прочее',5]]%>
+	<%index= @supplier.structure - 1%>
+	<%= org[0][index] %>
+  </p>
+  <p>
+	<strong>ИНН: </strong>
+	<%= @supplier.inn%>
+  </p>
+ <p>
+	<strong>Адрес: </strong>
+	<%= @supplier.address %>
+  </p>
+ <p>
+	<strong>Телефон: </strong>
+	<%= @supplier.phone %>
+  </p>		
+	<%=link_to '<-Список поставщиков->', suppliers_path%> | <%=link_to '<-Изменить->', edit_supplier_path(@supplier)%>
+
